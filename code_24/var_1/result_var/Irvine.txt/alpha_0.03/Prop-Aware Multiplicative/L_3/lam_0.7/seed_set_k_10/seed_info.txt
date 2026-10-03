@@ -1,0 +1,85 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.03
+Algorithm: Prop-Aware Multiplicative
+Parameters: L=3, Lambda=0.7
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 79.60
+Average Closeness Centrality: 0.392281
+Average Harmonic Centrality: 806.223333
+Average PageRank: 0.003053
+Average K-Core Number: 18.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 8 (Original GML ID: 9)
+  Degree: 241
+  Closeness Centrality: 0.461807
+  Harmonic Centrality: 977.450000
+  PageRank: 0.008822
+  K-Core Number: 20
+
+Seed Mapped ID: 18 (Original GML ID: 19)
+  Degree: 110
+  Closeness Centrality: 0.392512
+  Harmonic Centrality: 819.616667
+  PageRank: 0.004389
+  K-Core Number: 20
+
+Seed Mapped ID: 522 (Original GML ID: 523)
+  Degree: 101
+  Closeness Centrality: 0.422874
+  Harmonic Centrality: 870.783333
+  PageRank: 0.004667
+  K-Core Number: 20
+
+Seed Mapped ID: 1542 (Original GML ID: 1543)
+  Degree: 99
+  Closeness Centrality: 0.403686
+  Harmonic Centrality: 835.866667
+  PageRank: 0.003493
+  K-Core Number: 20
+
+Seed Mapped ID: 1538 (Original GML ID: 1539)
+  Degree: 69
+  Closeness Centrality: 0.369663
+  Harmonic Centrality: 762.500000
+  PageRank: 0.002358
+  K-Core Number: 19
+
+Seed Mapped ID: 764 (Original GML ID: 765)
+  Degree: 37
+  Closeness Centrality: 0.368651
+  Harmonic Centrality: 750.850000
+  PageRank: 0.001197
+  K-Core Number: 17
+
+Seed Mapped ID: 796 (Original GML ID: 797)
+  Degree: 40
+  Closeness Centrality: 0.371556
+  Harmonic Centrality: 755.516667
+  PageRank: 0.001783
+  K-Core Number: 18
+
+Seed Mapped ID: 414 (Original GML ID: 415)
+  Degree: 38
+  Closeness Centrality: 0.389754
+  Harmonic Centrality: 789.283333
+  PageRank: 0.001273
+  K-Core Number: 19
+
+Seed Mapped ID: 1508 (Original GML ID: 1509)
+  Degree: 26
+  Closeness Centrality: 0.362905
+  Harmonic Centrality: 731.666667
+  PageRank: 0.001022
+  K-Core Number: 13
+
+Seed Mapped ID: 0 (Original GML ID: 1)
+  Degree: 35
+  Closeness Centrality: 0.379404
+  Harmonic Centrality: 768.700000
+  PageRank: 0.001529
+  K-Core Number: 15
+

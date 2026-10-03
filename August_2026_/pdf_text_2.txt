@@ -1,0 +1,270 @@
+
+--- PAGE 1 ---
+Ind Fairness in IM
+First Author1[0000−1111−2222−3333], Second Author2,3[1111−2222−3333−4444], and
+Third Author3[2222−−3333−4444−5555]
+1 Princeton University, Princeton NJ 08544, USA
+2 Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany
+lncs@springer.com
+http://www.springer.com/gp/computer-science/lncs
+3 ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany
+{abc,lncs}@uni-heidelberg.de
+Abstract.The abstract should briefly summarize the contents of the
+paper in 150–250 words.
+Keywords:First keyword·Second keyword·Another keyword.
+1 Proposed Method
+The Myopic algorithm selects the node with the lowest probability of receiv-
+ing information. Although this directly targets the least-accessible individual, it
+does not consider whether the selected node has sufficient spreading capability to
+improve information access for other disadvantaged nodes. In particular, a node
+with a very low probability of receiving information may be located at the net-
+work periphery and may have limited ability to propagate information further.
+To address this limitation, we propose a simple propagation-aware framework
+that considers two complementary characteristics of each candidate node:
+1.Accessibility disadvantage: How unlikely is the node to receive the infor-
+mation?
+2.Spreading power: If selected as a seed, how effectively can the node prop-
+agate information to other disadvantaged nodes?
+The two quantities are combined to obtain a fairness-aware seed selection
+score.
+1.1 Step 1: Estimating Information Accessibility
+Let
+G= (V,E)
+denote a network, letS⊆Vdenote the current seed set, and letαdenote the
+transmission probability under the Independent Cascade Model (ICM).
+Foreachnodev∈V,wefirstestimateitsprobabilityofreceivinginformation:
+pv(S) = Pr(vreceives information|S).(1)
+--- PAGE 2 ---
+2 F. Author et al.
+This quantity can be estimated using theProbEstprocedure employed by
+the Myopic algorithm, or using a computationally cheaper approximation such
+as a BFS- or PPR-based accessibility estimator.
+I will suggest that you estimate it using the BFS- or PPR-based
+accessibility estimator. The first seed node should be selected using
+the highest pagerank pr highest core number. For the initial imple-
+mentation, you can only use PageRank
+We transform the information-access probability into adisadvantage score:
+D(v) = 1−p v(S) (2)
+whereD(v)∈[0,1]. A high value ofD(v)indicates that nodevcurrently has
+poor information access. For example,
+pv(S) = 0.1 =⇒D(v) = 0.9,
+whereas
+pv(S) = 0.8 =⇒D(v) = 0.2.
+Thus,D(v)captures the first component of the seed-selection problem:
+How underserved is nodevunder the current diffusion process?
+1.2 Step 2: Estimating the Spreading Power of a Node
+Accessibility alone is insufficient for seed selection because a highly disadvan-
+taged node may have little ability to propagate information further. We therefore
+introduce a second quantity,R(v), representing thespreading powerof nodev.
+A correct way to define is the expected cascade size whenvis selected as a
+seed:
+R(v) =E[|Cascade(v)|].(3)
+However, conventional spreading power may not be desirable for fair infor-
+mation outreach as well as it is costly to compute,so I propose a better
+estimator to estimate it.
+Fair Spreading PowerTo address this issue, we define afair spreading power
+that gives greater importance to propagation toward poorly accessible nodes.
+Let
+Pv→u
+denotetheprobabilitythatinformationoriginatingfromcandidatenodevreaches
+nodeu. We define
+R(v) =
+X
+u∈V
+u̸=v
+D(u)Pv→u (4)
+--- PAGE 3 ---
+Ind Fairness in IM 3
+or equivalently,
+R(v) =
+X
+u∈V
+u̸=v
+(1−p u(S))Pv→u.(5)
+Under this formulation, propagating information to a node with low current
+access contributes more toR(v)than propagating information to an already
+well-served node.
+Therefore,R(v)answers the second question:
+How effectively can nodevpropagate information toward currently un-
+derserved individuals?
+Approximation of Fair Spreading PowerComputingPv→u exactly for ev-
+ery pair(v,u)can be computationally expensive. We therefore propose a simple
+distance-based approximation.
+Under the Independent Cascade Model, transmission along a path of length
+drequires approximatelydsuccessful transmission events. Assuming a uniform
+edge transmission probabilityα, we use
+Pv→u≈α d(v,u),(6)
+whered(v,u)denotes the shortest-path distance betweenvandu.
+The fair spreading score can then be approximated as
+R(v) =
+X
+u∈V
+u̸=v
+D(u)αd(v,u) (7)
+This formulation has an intuitive interpretation:
+–disadvantaged nodes receive larger weights throughD(u);
+–nearby nodes receive larger weights becauseαd(v,u) decreases with distance;
+–distant nodes contribute less because reaching them requires more successful
+transmissions.
+For improved scalability, propagation can be restricted to nodes withinL
+hops:
+R(L)(v) =
+X
+u̸=v
+d(v,u)≤L
+D(u)αd(v,u) (8)
+whereLis typically a small integer such as2or3. I will suggest that
+you do experiments for 2 or 3 only.This avoids computing the contribution
+of distant nodes whose influence is already strongly discounted byαd(v,u).
+--- PAGE 4 ---
+4 F. Author et al.
+Normalization: don’t do it for now I will suggest that in initial exper-
+iments, you can avoid the normalization step and just see what the
+range of these values is, and whether we can define lambda in such a
+way that we still get good results.
+Since the accessibility-disadvantage score and spreading-power score may
+have different scales, we can normalize both quantities before combining them.
+The normalized disadvantage score is
+eD(v) = D(v)−D min
+Dmax−D min
+,(9)
+where
+Dmin = min
+u/∈S
+D(u), D max = max
+u/∈S
+D(u).
+Similarly,
+eRF (v) = RF (v)−R F,min
+RF,max−RF,min
+.(10)
+Consequently,
+eD(v), eRF (v)∈[0,1].
+1.3 Step 3: Final Score: Combined Propagation-Aware Fairness
+Score
+We combine the two components using a weighted objective:
+FS(v) =λ eD(v) + (1−λ) eR(v) (11)
+where
+0≤λ≤1.
+The parameterλcontrols the trade-off between prioritizing the candidate’s
+own information disadvantage and its ability to improve information access for
+other disadvantaged nodes.
+When
+λ= 1,
+the objective becomes
+FS(v) = eD(v),
+which is equivalent in spirit to the Myopic strategy: preference is given entirely
+to nodes with poor current information access.
+When
+λ= 0,
+the objective becomes
+FS(v) = eRF (v),
+and seed selection is determined entirely by the node’s ability to propagate
+information toward disadvantaged individuals.
+Intermediate values ofλbalance these two objectives.
+--- PAGE 5 ---
+Ind Fairness in IM 5
+1.4 Step 4: Seed Selection
+At each iteration, the candidate with the largest combined score is selected:
+v∗ = arg max
+v∈V\S
+FS(v) (12)
+The selected node is added to the seed set:
+S←S∪{v ∗}.(13)
+After adding the new seed, the information-access probabilitiespv(S)are
+updated, which in turn updates the disadvantage scoresD(v)and fair spreading-
+power scoresRF (v). The procedure is repeated until the desired seed budgetk
+is reached.
+2 Alternative approaches for final score
+I propose 2 more approaches to compute the final score as defined in
+Step 3, and you can try all 3 of these and see which one is better.
+2.1 Multiplicative Alternative
+An alternative to the weighted additive objective is a multiplicative formulation:
+FS mult(v) = eD(v)λeR(v)1−λ (14)
+A particularly simple version is
+FS mult(v) = eD(v)eR(v).(15)
+The multiplicative formulation favors candidates that perform well onboth
+dimensions. For example, an extremely disadvantaged but structurally isolated
+node receives a low score because its spreading power is small. Similarly, a highly
+influential hub that already has very high information access receives a low score
+because its disadvantage is small.
+In contrast, the additive formulation permits a sufficiently large value on one
+dimension to compensate for a smaller value on the other. We therefore consider
+the additive and multiplicative formulations as two variants of the proposed
+method.
+2.2 Pareto-Based Candidate Filtering
+Before computing the final combined score, an optional Pareto filtering step can
+be applied. Each candidatevis represented by the pair
+
+eD(v), eR(v)
+
+.
+--- PAGE 6 ---
+6 F. Author et al.
+A candidatevis dominated by candidateuif
+eD(u)≥ eD(v)(16)
+and
+eRF (u)≥ eRF (v),(17)
+with at least one strict inequality. Dominated candidates can be removed because
+another candidate is simultaneously more disadvantaged and has greater fair
+spreading capability.
+The combined scoring function can then be applied only to candidates on
+the Pareto frontier.
+3 Proposed Algorithm
+I roughly type the algorithm as it can help you in better understanding.
+Algorithm 1Propagation-Aware Fair Seed Selection
+Require:GraphG= (V,E), initial seed setS, seed budgetk, transmission probability
+α, trade-off parameterλ, propagation depthL
+Ensure:Seed setS
+1: add first seed node toSbased on highest Pagerank
+2:while|S|<kdo
+3: Estimate information-access probabilityp v(S)for everyv∈V
+4:foreachv∈V\Sdo
+5:D(v)←1−p v(S)
+6:end for
+7:foreachv∈V\Sdo
+8:
+RF (v)←
+X
+u̸=v
+d(v,u)≤L
+D(u)αd(v,u)
+9:end for
+10: NormalizeD(v)to obtain eD(v)(we skip it for now)
+11: NormalizeR F (v)to obtain eRF (v)(we skip it for now)
+12:foreachv∈V\Sdo
+13:
+FS(v)←λ eD(v) + (1−λ) eRF (v)
+W e try all 3 approaches for this
+14:end for
+15:
+v∗←arg max
+v∈V\S
+FS(v)
+16:S←S∪{v ∗}
+17:end while
+18:returnS
+--- PAGE 7 ---
+Ind Fairness in IM 7
+4 Interpretation
+The proposed method separates seed selection into two complementary ques-
+tions:
+D(v)|{z}
+How underserved is nodev?
+andR F (v)| {z }
+How effectively canvimprove outreach to underserved nodes?
+(18)
+The final seed-selection criterion combines these quantities:
+Fair Seed Score=λAccessibility Disadvantage| {z }
+individual need
++(1−λ)Fair Spreading Power| {z }
+downstream benefit
+.
+(19)
+Thus, unlike Myopic, the proposed method does not automatically select
+the least-accessible node. Instead, it favors nodes that are themselves relatively
+underserved while also occupying network positions from which information can
+propagate effectively toward other underserved individuals.
+First try for one setting and see how this method works, and if it is better
+or close to the best one, we can fine-tune it. Instead of doing experiments for all
+settings, first do them for minimal settings and share the results.

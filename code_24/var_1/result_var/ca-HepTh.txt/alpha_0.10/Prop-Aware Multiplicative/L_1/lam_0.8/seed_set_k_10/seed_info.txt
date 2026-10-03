@@ -1,0 +1,85 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.10
+Algorithm: Prop-Aware Multiplicative
+Parameters: L=1, Lambda=0.8
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 35.40
+Average Closeness Centrality: 0.174038
+Average Harmonic Centrality: 1845.284810
+Average PageRank: 0.000502
+Average K-Core Number: 9.40
+
+--- Individual Seed Details ---
+Seed Mapped ID: 222 (Original GML ID: 1441)
+  Degree: 65
+  Closeness Centrality: 0.201259
+  Harmonic Centrality: 2168.633009
+  PageRank: 0.000863
+  K-Core Number: 6
+
+Seed Mapped ID: 5483 (Original GML ID: 39085)
+  Degree: 44
+  Closeness Centrality: 0.171358
+  Harmonic Centrality: 1811.766162
+  PageRank: 0.000253
+  K-Core Number: 31
+
+Seed Mapped ID: 9348 (Original GML ID: 65168)
+  Degree: 38
+  Closeness Centrality: 0.171097
+  Harmonic Centrality: 1822.941883
+  PageRank: 0.000369
+  K-Core Number: 20
+
+Seed Mapped ID: 4153 (Original GML ID: 28950)
+  Degree: 34
+  Closeness Centrality: 0.172021
+  Harmonic Centrality: 1829.028030
+  PageRank: 0.000554
+  K-Core Number: 5
+
+Seed Mapped ID: 2161 (Original GML ID: 14642)
+  Degree: 38
+  Closeness Centrality: 0.183243
+  Harmonic Centrality: 1953.359524
+  PageRank: 0.000633
+  K-Core Number: 6
+
+Seed Mapped ID: 6890 (Original GML ID: 48299)
+  Degree: 25
+  Closeness Centrality: 0.153366
+  Harmonic Centrality: 1605.671259
+  PageRank: 0.000490
+  K-Core Number: 5
+
+Seed Mapped ID: 12 (Original GML ID: 97)
+  Degree: 30
+  Closeness Centrality: 0.183782
+  Harmonic Centrality: 1948.943290
+  PageRank: 0.000517
+  K-Core Number: 5
+
+Seed Mapped ID: 9405 (Original GML ID: 65422)
+  Degree: 22
+  Closeness Centrality: 0.157308
+  Harmonic Centrality: 1642.966270
+  PageRank: 0.000384
+  K-Core Number: 5
+
+Seed Mapped ID: 627 (Original GML ID: 4436)
+  Degree: 31
+  Closeness Centrality: 0.180678
+  Harmonic Centrality: 1920.256205
+  PageRank: 0.000519
+  K-Core Number: 6
+
+Seed Mapped ID: 5195 (Original GML ID: 37108)
+  Degree: 27
+  Closeness Centrality: 0.166265
+  Harmonic Centrality: 1749.282468
+  PageRank: 0.000441
+  K-Core Number: 5
+

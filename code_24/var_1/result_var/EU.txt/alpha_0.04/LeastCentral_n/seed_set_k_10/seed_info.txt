@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.04
+Algorithm: LeastCentral_n
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 33.80
+Average Closeness Centrality: 0.387767
+Average Harmonic Centrality: 413.536667
+Average PageRank: 0.000997
+Average K-Core Number: 14.40
+
+--- Individual Seed Details ---
+Seed Mapped ID: 604 (Original GML ID: 604)
+  Degree: 8
+  Closeness Centrality: 0.364114
+  Harmonic Centrality: 385.283333
+  PageRank: 0.000351
+  K-Core Number: 8
+
+Seed Mapped ID: 862 (Original GML ID: 862)
+  Degree: 1
+  Closeness Centrality: 0.279618
+  Harmonic Centrality: 289.700000
+  PageRank: 0.000190
+  K-Core Number: 1
+
+Seed Mapped ID: 649 (Original GML ID: 649)
+  Degree: 10
+  Closeness Centrality: 0.370963
+  Harmonic Centrality: 394.033333
+  PageRank: 0.000426
+  K-Core Number: 9
+
+Seed Mapped ID: 801 (Original GML ID: 801)
+  Degree: 2
+  Closeness Centrality: 0.326915
+  Harmonic Centrality: 340.816667
+  PageRank: 0.000197
+  K-Core Number: 2
+
+Seed Mapped ID: 101 (Original GML ID: 101)
+  Degree: 27
+  Closeness Centrality: 0.396049
+  Harmonic Centrality: 425.116667
+  PageRank: 0.000888
+  K-Core Number: 19
+
+Seed Mapped ID: 434 (Original GML ID: 434)
+  Degree: 183
+  Closeness Centrality: 0.515942
+  Harmonic Centrality: 570.000000
+  PageRank: 0.004690
+  K-Core Number: 34
+
+Seed Mapped ID: 818 (Original GML ID: 818)
+  Degree: 13
+  Closeness Centrality: 0.409474
+  Harmonic Centrality: 433.533333
+  PageRank: 0.000473
+  K-Core Number: 13
+
+Seed Mapped ID: 769 (Original GML ID: 769)
+  Degree: 3
+  Closeness Centrality: 0.351659
+  Harmonic Centrality: 370.216667
+  PageRank: 0.000238
+  K-Core Number: 3
+
+Seed Mapped ID: 123 (Original GML ID: 123)
+  Degree: 34
+  Closeness Centrality: 0.421072
+  Harmonic Centrality: 450.750000
+  PageRank: 0.000982
+  K-Core Number: 26
+
+Seed Mapped ID: 35 (Original GML ID: 35)
+  Degree: 57
+  Closeness Centrality: 0.441865
+  Harmonic Centrality: 475.916667
+  PageRank: 0.001537
+  K-Core Number: 29
+

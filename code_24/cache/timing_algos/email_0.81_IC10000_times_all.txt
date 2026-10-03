@@ -1,0 +1,36 @@
+myopic
+2089.101 0 
+gonzales
+1.196 6.279 
+furthest_non_seed_0
+0.045 1.072 
+bfs_myopic
+15.921 0 
+naive_bfs_myopic
+1.117 0 
+myopic
+2130.161 0 
+gonzales
+1.218 6.214 
+furthest_non_seed_0
+0.044 1.073 
+bfs_myopic
+15.677 0 
+naive_bfs_myopic
+1.065 0 
+myopic
+2116.363 0 
+gonzales
+1.195 6.199 
+furthest_non_seed_0
+0.046 1.062 
+bfs_myopic
+15.24 0 
+naive_bfs_myopic
+1.036 0 
+degree_lowest_centrality_0
+0.054 10.703 
+degree_lowest_centrality_0
+0.05 11.245 
+degree_lowest_centrality_0
+0.051 11.281 

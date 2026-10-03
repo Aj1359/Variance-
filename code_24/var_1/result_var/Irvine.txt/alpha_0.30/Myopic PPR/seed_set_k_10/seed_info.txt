@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.30
+Algorithm: Myopic PPR
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 1.70
+Average Closeness Centrality: 0.239063
+Average Harmonic Centrality: 465.506190
+Average PageRank: 0.000185
+Average K-Core Number: 1.60
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1273 (Original GML ID: 1274)
+  Degree: 8
+  Closeness Centrality: 0.336429
+  Harmonic Centrality: 668.833333
+  PageRank: 0.000306
+  K-Core Number: 7
+
+Seed Mapped ID: 1611 (Original GML ID: 1612)
+  Degree: 1
+  Closeness Centrality: 0.213085
+  Harmonic Centrality: 412.771429
+  PageRank: 0.000203
+  K-Core Number: 1
+
+Seed Mapped ID: 1257 (Original GML ID: 1258)
+  Degree: 1
+  Closeness Centrality: 0.239829
+  Harmonic Centrality: 467.176190
+  PageRank: 0.000197
+  K-Core Number: 1
+
+Seed Mapped ID: 1692 (Original GML ID: 1693)
+  Degree: 1
+  Closeness Centrality: 0.230536
+  Harmonic Centrality: 447.502381
+  PageRank: 0.000141
+  K-Core Number: 1
+
+Seed Mapped ID: 944 (Original GML ID: 945)
+  Degree: 1
+  Closeness Centrality: 0.252513
+  Harmonic Centrality: 491.476190
+  PageRank: 0.000123
+  K-Core Number: 1
+
+Seed Mapped ID: 1896 (Original GML ID: 1897)
+  Degree: 1
+  Closeness Centrality: 0.213980
+  Harmonic Centrality: 414.846429
+  PageRank: 0.000168
+  K-Core Number: 1
+
+Seed Mapped ID: 1883 (Original GML ID: 1884)
+  Degree: 1
+  Closeness Centrality: 0.256811
+  Harmonic Centrality: 500.750000
+  PageRank: 0.000136
+  K-Core Number: 1
+
+Seed Mapped ID: 1606 (Original GML ID: 1607)
+  Degree: 1
+  Closeness Centrality: 0.189569
+  Harmonic Centrality: 365.334524
+  PageRank: 0.000230
+  K-Core Number: 1
+
+Seed Mapped ID: 1204 (Original GML ID: 1205)
+  Degree: 1
+  Closeness Centrality: 0.233621
+  Harmonic Centrality: 452.785714
+  PageRank: 0.000154
+  K-Core Number: 1
+
+Seed Mapped ID: 425 (Original GML ID: 426)
+  Degree: 1
+  Closeness Centrality: 0.224259
+  Harmonic Centrality: 433.585714
+  PageRank: 0.000195
+  K-Core Number: 1
+

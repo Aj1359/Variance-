@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.07
+Algorithm: Naive Myopic BFS
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 1.30
+Average Closeness Centrality: 0.102238
+Average Harmonic Centrality: 200.345476
+Average PageRank: 0.000386
+Average K-Core Number: 1.30
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1858 (Original GML ID: 1859)
+  Degree: 3
+  Closeness Centrality: 0.286803
+  Harmonic Centrality: 570.300000
+  PageRank: 0.000169
+  K-Core Number: 3
+
+Seed Mapped ID: 228 (Original GML ID: 229)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 229 (Original GML ID: 230)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 1796 (Original GML ID: 1797)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 1797 (Original GML ID: 1798)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 1811 (Original GML ID: 1812)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 1812 (Original GML ID: 1813)
+  Degree: 1
+  Closeness Centrality: 0.000527
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000527
+  K-Core Number: 1
+
+Seed Mapped ID: 1611 (Original GML ID: 1612)
+  Degree: 1
+  Closeness Centrality: 0.213085
+  Harmonic Centrality: 412.771429
+  PageRank: 0.000203
+  K-Core Number: 1
+
+Seed Mapped ID: 4 (Original GML ID: 5)
+  Degree: 1
+  Closeness Centrality: 0.255593
+  Harmonic Centrality: 498.250000
+  PageRank: 0.000133
+  K-Core Number: 1
+
+Seed Mapped ID: 20 (Original GML ID: 21)
+  Degree: 2
+  Closeness Centrality: 0.263742
+  Harmonic Centrality: 516.133333
+  PageRank: 0.000196
+  K-Core Number: 2
+

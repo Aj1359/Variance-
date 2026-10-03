@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.06
+Algorithm: LeastCentral_n
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 29.40
+Average Closeness Centrality: 0.393172
+Average Harmonic Centrality: 421.338333
+Average PageRank: 0.000982
+Average K-Core Number: 19.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 779 (Original GML ID: 779)
+  Degree: 3
+  Closeness Centrality: 0.337652
+  Harmonic Centrality: 354.733333
+  PageRank: 0.000228
+  K-Core Number: 3
+
+Seed Mapped ID: 509 (Original GML ID: 509)
+  Degree: 53
+  Closeness Centrality: 0.426084
+  Harmonic Centrality: 461.533333
+  PageRank: 0.001730
+  K-Core Number: 29
+
+Seed Mapped ID: 267 (Original GML ID: 267)
+  Degree: 18
+  Closeness Centrality: 0.340267
+  Harmonic Centrality: 363.700000
+  PageRank: 0.000638
+  K-Core Number: 16
+
+Seed Mapped ID: 379 (Original GML ID: 379)
+  Degree: 52
+  Closeness Centrality: 0.426272
+  Harmonic Centrality: 461.000000
+  PageRank: 0.001627
+  K-Core Number: 27
+
+Seed Mapped ID: 560 (Original GML ID: 560)
+  Degree: 55
+  Closeness Centrality: 0.427782
+  Harmonic Centrality: 463.783333
+  PageRank: 0.001811
+  K-Core Number: 29
+
+Seed Mapped ID: 410 (Original GML ID: 410)
+  Degree: 11
+  Closeness Centrality: 0.394916
+  Harmonic Centrality: 418.883333
+  PageRank: 0.000410
+  K-Core Number: 11
+
+Seed Mapped ID: 135 (Original GML ID: 135)
+  Degree: 36
+  Closeness Centrality: 0.419427
+  Harmonic Centrality: 449.583333
+  PageRank: 0.001010
+  K-Core Number: 27
+
+Seed Mapped ID: 936 (Original GML ID: 936)
+  Degree: 25
+  Closeness Centrality: 0.387318
+  Harmonic Centrality: 416.083333
+  PageRank: 0.001015
+  K-Core Number: 18
+
+Seed Mapped ID: 954 (Original GML ID: 954)
+  Degree: 7
+  Closeness Centrality: 0.363566
+  Harmonic Centrality: 384.383333
+  PageRank: 0.000312
+  K-Core Number: 7
+
+Seed Mapped ID: 200 (Original GML ID: 200)
+  Degree: 34
+  Closeness Centrality: 0.408436
+  Harmonic Centrality: 439.700000
+  PageRank: 0.001039
+  K-Core Number: 24
+

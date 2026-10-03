@@ -1,0 +1,63 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.30
+Algorithm: MinDegree_nd
+Seed Set Size (k): 7
+
+--- Average Metrics for Seed Set ---
+Average Degree: 6.14
+Average Closeness Centrality: 0.325986
+Average Harmonic Centrality: 650.297619
+Average PageRank: 0.000263
+Average K-Core Number: 3.71
+
+--- Individual Seed Details ---
+Seed Mapped ID: 342 (Original GML ID: 343)
+  Degree: 37
+  Closeness Centrality: 0.394152
+  Harmonic Centrality: 799.900000
+  PageRank: 0.001186
+  K-Core Number: 20
+
+Seed Mapped ID: 947 (Original GML ID: 948)
+  Degree: 1
+  Closeness Centrality: 0.309488
+  Harmonic Centrality: 618.683333
+  PageRank: 0.000106
+  K-Core Number: 1
+
+Seed Mapped ID: 15 (Original GML ID: 16)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 23 (Original GML ID: 24)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 48 (Original GML ID: 49)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 149 (Original GML ID: 150)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 152 (Original GML ID: 153)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+

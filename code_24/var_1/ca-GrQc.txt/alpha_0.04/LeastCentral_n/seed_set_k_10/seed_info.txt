@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: ca-GrQc.txt
+Alpha: 0.04
+Algorithm: LeastCentral_n
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 2.30
+Average Closeness Centrality: 0.103078
+Average Harmonic Centrality: 569.211295
+Average PageRank: 0.000124
+Average K-Core Number: 2.30
+
+--- Individual Seed Details ---
+Seed Mapped ID: 3626 (Original GML ID: 18194)
+  Degree: 1
+  Closeness Centrality: 0.000191
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000191
+  K-Core Number: 1
+
+Seed Mapped ID: 408 (Original GML ID: 2059)
+  Degree: 1
+  Closeness Centrality: 0.144621
+  Harmonic Centrality: 808.393398
+  PageRank: 0.000048
+  K-Core Number: 1
+
+Seed Mapped ID: 3364 (Original GML ID: 17125)
+  Degree: 3
+  Closeness Centrality: 0.108361
+  Harmonic Centrality: 591.658933
+  PageRank: 0.000127
+  K-Core Number: 3
+
+Seed Mapped ID: 882 (Original GML ID: 4284)
+  Degree: 2
+  Closeness Centrality: 0.127734
+  Harmonic Centrality: 708.110137
+  PageRank: 0.000083
+  K-Core Number: 2
+
+Seed Mapped ID: 2505 (Original GML ID: 12612)
+  Degree: 4
+  Closeness Centrality: 0.124062
+  Harmonic Centrality: 680.933009
+  PageRank: 0.000134
+  K-Core Number: 4
+
+Seed Mapped ID: 1641 (Original GML ID: 8148)
+  Degree: 3
+  Closeness Centrality: 0.121997
+  Harmonic Centrality: 670.383958
+  PageRank: 0.000132
+  K-Core Number: 3
+
+Seed Mapped ID: 3586 (Original GML ID: 18037)
+  Degree: 3
+  Closeness Centrality: 0.142354
+  Harmonic Centrality: 790.849242
+  PageRank: 0.000108
+  K-Core Number: 3
+
+Seed Mapped ID: 1081 (Original GML ID: 5261)
+  Degree: 1
+  Closeness Centrality: 0.000191
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000191
+  K-Core Number: 1
+
+Seed Mapped ID: 2640 (Original GML ID: 13371)
+  Degree: 4
+  Closeness Centrality: 0.153259
+  Harmonic Centrality: 854.738131
+  PageRank: 0.000150
+  K-Core Number: 4
+
+Seed Mapped ID: 3649 (Original GML ID: 18275)
+  Degree: 1
+  Closeness Centrality: 0.108009
+  Harmonic Centrality: 585.046140
+  PageRank: 0.000074
+  K-Core Number: 1
+

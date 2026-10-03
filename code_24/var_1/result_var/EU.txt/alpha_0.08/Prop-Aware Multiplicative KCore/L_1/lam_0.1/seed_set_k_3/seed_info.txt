@@ -1,0 +1,36 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.08
+Algorithm: Prop-Aware Multiplicative KCore
+Parameters: L=1, Lambda=0.1
+Seed Set Size (k): 3
+
+--- Average Metrics for Seed Set ---
+Average Degree: 157.67
+Average Closeness Centrality: 0.480666
+Average Harmonic Centrality: 533.272222
+Average PageRank: 0.004507
+Average K-Core Number: 29.33
+
+--- Individual Seed Details ---
+Seed Mapped ID: 160 (Original GML ID: 160)
+  Degree: 345
+  Closeness Centrality: 0.573848
+  Harmonic Centrality: 655.500000
+  PageRank: 0.009410
+  K-Core Number: 34
+
+Seed Mapped ID: 549 (Original GML ID: 549)
+  Degree: 79
+  Closeness Centrality: 0.438656
+  Harmonic Centrality: 481.200000
+  PageRank: 0.002369
+  K-Core Number: 29
+
+Seed Mapped ID: 401 (Original GML ID: 401)
+  Degree: 49
+  Closeness Centrality: 0.429493
+  Harmonic Centrality: 463.116667
+  PageRank: 0.001743
+  K-Core Number: 25
+

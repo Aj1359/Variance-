@@ -1,0 +1,28 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.07
+Algorithm: Myopic PPR
+Seed Set Size (k): 2
+
+--- Average Metrics for Seed Set ---
+Average Degree: 68.50
+Average Closeness Centrality: 0.232970
+Average Harmonic Centrality: 260.666667
+Average PageRank: 0.002376
+Average K-Core Number: 15.00
+
+--- Individual Seed Details ---
+Seed Mapped ID: 377 (Original GML ID: 377)
+  Degree: 137
+  Closeness Centrality: 0.465940
+  Harmonic Centrality: 521.333333
+  PageRank: 0.004601
+  K-Core Number: 30
+
+Seed Mapped ID: 580 (Original GML ID: 580)
+  Degree: 0
+  Closeness Centrality: 0.000000
+  Harmonic Centrality: 0.000000
+  PageRank: 0.000152
+  K-Core Number: 0
+

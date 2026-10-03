@@ -1,0 +1,63 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.20
+Algorithm: Myopic BFS
+Seed Set Size (k): 7
+
+--- Average Metrics for Seed Set ---
+Average Degree: 4.29
+Average Closeness Centrality: 0.024207
+Average Harmonic Centrality: 254.808725
+Average PageRank: 0.000120
+Average K-Core Number: 2.14
+
+--- Individual Seed Details ---
+Seed Mapped ID: 545 (Original GML ID: 3890)
+  Degree: 19
+  Closeness Centrality: 0.167944
+  Harmonic Centrality: 1767.327742
+  PageRank: 0.000276
+  K-Core Number: 5
+
+Seed Mapped ID: 4 (Original GML ID: 27)
+  Degree: 1
+  Closeness Centrality: 0.000101
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000101
+  K-Core Number: 1
+
+Seed Mapped ID: 8 (Original GML ID: 40)
+  Degree: 2
+  Closeness Centrality: 0.000203
+  Harmonic Centrality: 2.000000
+  PageRank: 0.000101
+  K-Core Number: 2
+
+Seed Mapped ID: 10 (Original GML ID: 45)
+  Degree: 1
+  Closeness Centrality: 0.000101
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000101
+  K-Core Number: 1
+
+Seed Mapped ID: 11 (Original GML ID: 49)
+  Degree: 2
+  Closeness Centrality: 0.000203
+  Harmonic Centrality: 2.000000
+  PageRank: 0.000101
+  K-Core Number: 2
+
+Seed Mapped ID: 15 (Original GML ID: 132)
+  Degree: 2
+  Closeness Centrality: 0.000413
+  Harmonic Centrality: 4.500000
+  PageRank: 0.000063
+  K-Core Number: 2
+
+Seed Mapped ID: 17 (Original GML ID: 140)
+  Degree: 3
+  Closeness Centrality: 0.000482
+  Harmonic Centrality: 5.833333
+  PageRank: 0.000098
+  K-Core Number: 2
+

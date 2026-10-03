@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.10
+Algorithm: MinDegree_nd
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 1.20
+Average Closeness Centrality: 0.313360
+Average Harmonic Centrality: 622.240000
+Average PageRank: 0.000116
+Average K-Core Number: 1.20
+
+--- Individual Seed Details ---
+Seed Mapped ID: 456 (Original GML ID: 457)
+  Degree: 3
+  Closeness Centrality: 0.298894
+  Harmonic Centrality: 590.116667
+  PageRank: 0.000173
+  K-Core Number: 3
+
+Seed Mapped ID: 947 (Original GML ID: 948)
+  Degree: 1
+  Closeness Centrality: 0.309488
+  Harmonic Centrality: 618.683333
+  PageRank: 0.000106
+  K-Core Number: 1
+
+Seed Mapped ID: 15 (Original GML ID: 16)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 23 (Original GML ID: 24)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 48 (Original GML ID: 49)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 149 (Original GML ID: 150)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 152 (Original GML ID: 153)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 329 (Original GML ID: 330)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 1196 (Original GML ID: 1197)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 1449 (Original GML ID: 1450)
+  Degree: 1
+  Closeness Centrality: 0.315652
+  Harmonic Centrality: 626.700000
+  PageRank: 0.000110
+  K-Core Number: 1
+

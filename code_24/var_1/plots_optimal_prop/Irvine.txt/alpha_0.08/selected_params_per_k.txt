@@ -1,0 +1,186 @@
+=== Optimal Parameter Selection per Seed Set Size (k) ===
+Network: Irvine.txt
+Alpha: 0.08
+Optimization Metric: variance (Minimizing)
+======================================================================
+
+--- Seed Set Size k = 1 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.7
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.7)
+    Resulting variance  : 0.240656
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 1, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Multiplicative (L=1, lam=0.5)
+    Resulting variance  : 0.240402
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Additive KCore (L=1, lam=0.1)
+    Resulting variance  : 0.240484
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.7
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=1, lam=0.7)
+    Resulting variance  : 0.240602
+
+--- Seed Set Size k = 2 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 3, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Additive (L=3, lam=0.2)
+    Resulting variance  : 0.240461
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 1, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative (L=1, lam=0.1)
+    Resulting variance  : 0.240481
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.7
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.7)
+    Resulting variance  : 0.240485
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.8
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=3, lam=0.8)
+    Resulting variance  : 0.240698
+
+--- Seed Set Size k = 3 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.1)
+    Resulting variance  : 0.240352
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 2, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative (L=2, lam=0.1)
+    Resulting variance  : 0.240676
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.8
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.8)
+    Resulting variance  : 0.240430
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=3, lam=0.2)
+    Resulting variance  : 0.240386
+
+--- Seed Set Size k = 4 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.1)
+    Resulting variance  : 0.240567
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 1, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Multiplicative (L=1, lam=0.5)
+    Resulting variance  : 0.240745
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.3
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.3)
+    Resulting variance  : 0.240575
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 2, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=2, lam=0.2)
+    Resulting variance  : 0.240638
+
+--- Seed Set Size k = 5 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 2, Weight (lambda) = 0.3
+    Full Variant Name   : Prop-Aware Additive (L=2, lam=0.3)
+    Resulting variance  : 0.240535
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 2, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative (L=2, lam=0.2)
+    Resulting variance  : 0.240878
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.4
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.4)
+    Resulting variance  : 0.240406
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=3, lam=0.5)
+    Resulting variance  : 0.240707
+
+--- Seed Set Size k = 6 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.3
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.3)
+    Resulting variance  : 0.240703
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 1, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative (L=1, lam=0.1)
+    Resulting variance  : 0.240877
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Additive KCore (L=1, lam=0.5)
+    Resulting variance  : 0.240515
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=3, lam=0.1)
+    Resulting variance  : 0.240724
+
+--- Seed Set Size k = 7 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 2, Weight (lambda) = 0.6
+    Full Variant Name   : Prop-Aware Additive (L=2, lam=0.6)
+    Resulting variance  : 0.240557
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 1, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative (L=1, lam=0.2)
+    Resulting variance  : 0.240943
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Additive KCore (L=1, lam=0.5)
+    Resulting variance  : 0.240236
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 2, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=2, lam=0.2)
+    Resulting variance  : 0.240769
+
+--- Seed Set Size k = 8 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.3
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.3)
+    Resulting variance  : 0.240360
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 3, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative (L=3, lam=0.2)
+    Resulting variance  : 0.240843
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.7
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.7)
+    Resulting variance  : 0.240701
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=1, lam=0.2)
+    Resulting variance  : 0.240818
+
+--- Seed Set Size k = 9 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 1, Weight (lambda) = 0.6
+    Full Variant Name   : Prop-Aware Additive (L=1, lam=0.6)
+    Resulting variance  : 0.240528
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 3, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative (L=3, lam=0.2)
+    Resulting variance  : 0.240698
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 1, Weight (lambda) = 0.6
+    Full Variant Name   : Prop-Aware Additive KCore (L=1, lam=0.6)
+    Resulting variance  : 0.240196
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 2, Weight (lambda) = 0.2
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=2, lam=0.2)
+    Resulting variance  : 0.240821
+
+--- Seed Set Size k = 10 ---
+  [Prop-Aware Additive]
+    Selected Parameters : L = 2, Weight (lambda) = 0.5
+    Full Variant Name   : Prop-Aware Additive (L=2, lam=0.5)
+    Resulting variance  : 0.240591
+  [Prop-Aware Multiplicative]
+    Selected Parameters : L = 2, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative (L=2, lam=0.1)
+    Resulting variance  : 0.240563
+  [Prop-Aware Additive KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.8
+    Full Variant Name   : Prop-Aware Additive KCore (L=3, lam=0.8)
+    Resulting variance  : 0.240608
+  [Prop-Aware Multiplicative KCore]
+    Selected Parameters : L = 3, Weight (lambda) = 0.1
+    Full Variant Name   : Prop-Aware Multiplicative KCore (L=3, lam=0.1)
+    Resulting variance  : 0.240473
+

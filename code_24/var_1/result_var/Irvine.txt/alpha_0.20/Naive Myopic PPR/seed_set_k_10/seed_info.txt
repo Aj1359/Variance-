@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.20
+Algorithm: Naive Myopic PPR
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 1.10
+Average Closeness Centrality: 0.261163
+Average Harmonic Centrality: 509.978333
+Average PageRank: 0.000128
+Average K-Core Number: 1.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1682 (Original GML ID: 1683)
+  Degree: 2
+  Closeness Centrality: 0.324114
+  Harmonic Centrality: 637.916667
+  PageRank: 0.000138
+  K-Core Number: 2
+
+Seed Mapped ID: 1204 (Original GML ID: 1205)
+  Degree: 1
+  Closeness Centrality: 0.233621
+  Harmonic Centrality: 452.785714
+  PageRank: 0.000154
+  K-Core Number: 1
+
+Seed Mapped ID: 795 (Original GML ID: 796)
+  Degree: 1
+  Closeness Centrality: 0.241395
+  Harmonic Centrality: 470.983333
+  PageRank: 0.000133
+  K-Core Number: 1
+
+Seed Mapped ID: 1868 (Original GML ID: 1869)
+  Degree: 1
+  Closeness Centrality: 0.229694
+  Harmonic Centrality: 445.519048
+  PageRank: 0.000157
+  K-Core Number: 1
+
+Seed Mapped ID: 944 (Original GML ID: 945)
+  Degree: 1
+  Closeness Centrality: 0.252513
+  Harmonic Centrality: 491.476190
+  PageRank: 0.000123
+  K-Core Number: 1
+
+Seed Mapped ID: 1169 (Original GML ID: 1170)
+  Degree: 1
+  Closeness Centrality: 0.272704
+  Harmonic Centrality: 533.483333
+  PageRank: 0.000107
+  K-Core Number: 1
+
+Seed Mapped ID: 1692 (Original GML ID: 1693)
+  Degree: 1
+  Closeness Centrality: 0.230536
+  Harmonic Centrality: 447.502381
+  PageRank: 0.000141
+  K-Core Number: 1
+
+Seed Mapped ID: 1659 (Original GML ID: 1660)
+  Degree: 1
+  Closeness Centrality: 0.283612
+  Harmonic Centrality: 555.800000
+  PageRank: 0.000107
+  K-Core Number: 1
+
+Seed Mapped ID: 1154 (Original GML ID: 1155)
+  Degree: 1
+  Closeness Centrality: 0.259532
+  Harmonic Centrality: 507.250000
+  PageRank: 0.000111
+  K-Core Number: 1
+
+Seed Mapped ID: 1114 (Original GML ID: 1115)
+  Degree: 1
+  Closeness Centrality: 0.283911
+  Harmonic Centrality: 557.066667
+  PageRank: 0.000105
+  K-Core Number: 1
+

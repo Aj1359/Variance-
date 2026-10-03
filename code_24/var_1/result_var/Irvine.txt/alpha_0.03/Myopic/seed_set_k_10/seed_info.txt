@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.03
+Algorithm: Myopic
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 29.00
+Average Closeness Centrality: 0.306711
+Average Harmonic Centrality: 612.672619
+Average PageRank: 0.001032
+Average K-Core Number: 5.00
+
+--- Individual Seed Details ---
+Seed Mapped ID: 102 (Original GML ID: 103)
+  Degree: 255
+  Closeness Centrality: 0.448732
+  Harmonic Centrality: 964.116667
+  PageRank: 0.008017
+  K-Core Number: 20
+
+Seed Mapped ID: 1229 (Original GML ID: 1230)
+  Degree: 4
+  Closeness Centrality: 0.289489
+  Harmonic Centrality: 569.883333
+  PageRank: 0.000211
+  K-Core Number: 4
+
+Seed Mapped ID: 186 (Original GML ID: 187)
+  Degree: 3
+  Closeness Centrality: 0.272428
+  Harmonic Centrality: 535.292857
+  PageRank: 0.000313
+  K-Core Number: 2
+
+Seed Mapped ID: 64 (Original GML ID: 65)
+  Degree: 5
+  Closeness Centrality: 0.335710
+  Harmonic Centrality: 671.050000
+  PageRank: 0.000220
+  K-Core Number: 5
+
+Seed Mapped ID: 1637 (Original GML ID: 1638)
+  Degree: 4
+  Closeness Centrality: 0.285242
+  Harmonic Centrality: 559.483333
+  PageRank: 0.000257
+  K-Core Number: 3
+
+Seed Mapped ID: 125 (Original GML ID: 126)
+  Degree: 4
+  Closeness Centrality: 0.289756
+  Harmonic Centrality: 570.016667
+  PageRank: 0.000209
+  K-Core Number: 4
+
+Seed Mapped ID: 1711 (Original GML ID: 1712)
+  Degree: 4
+  Closeness Centrality: 0.288735
+  Harmonic Centrality: 571.516667
+  PageRank: 0.000470
+  K-Core Number: 2
+
+Seed Mapped ID: 649 (Original GML ID: 650)
+  Degree: 4
+  Closeness Centrality: 0.294921
+  Harmonic Centrality: 583.400000
+  PageRank: 0.000204
+  K-Core Number: 4
+
+Seed Mapped ID: 708 (Original GML ID: 709)
+  Degree: 3
+  Closeness Centrality: 0.273099
+  Harmonic Centrality: 535.716667
+  PageRank: 0.000189
+  K-Core Number: 3
+
+Seed Mapped ID: 90 (Original GML ID: 91)
+  Degree: 4
+  Closeness Centrality: 0.289001
+  Harmonic Centrality: 566.250000
+  PageRank: 0.000231
+  K-Core Number: 3
+

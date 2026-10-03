@@ -1,0 +1,28 @@
+=== Seed Set Report ===
+Network: ca-GrQc.txt
+Alpha: 0.02
+Algorithm: LeastCentral
+Seed Set Size (k): 2
+
+--- Average Metrics for Seed Set ---
+Average Degree: 0.50
+Average Closeness Centrality: 0.000095
+Average Harmonic Centrality: 0.500000
+Average PageRank: 0.000110
+Average K-Core Number: 0.50
+
+--- Individual Seed Details ---
+Seed Mapped ID: 3371 (Original GML ID: 17141)
+  Degree: 1
+  Closeness Centrality: 0.000191
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000191
+  K-Core Number: 1
+
+Seed Mapped ID: 2449 (Original GML ID: 12295)
+  Degree: 0
+  Closeness Centrality: 0.000000
+  Harmonic Centrality: 0.000000
+  PageRank: 0.000029
+  K-Core Number: 0
+

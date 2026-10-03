@@ -1,0 +1,85 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.09
+Algorithm: Prop-Aware Multiplicative KCore
+Parameters: L=1, Lambda=0.8
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 106.20
+Average Closeness Centrality: 0.256584
+Average Harmonic Centrality: 1162.675952
+Average PageRank: 0.001015
+Average K-Core Number: 19.30
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1912 (Original GML ID: 1912)
+  Degree: 755
+  Closeness Centrality: 0.350947
+  Harmonic Centrality: 1808.716667
+  PageRank: 0.003877
+  K-Core Number: 115
+
+Seed Mapped ID: 686 (Original GML ID: 686)
+  Degree: 170
+  Closeness Centrality: 0.216910
+  Harmonic Centrality: 1032.923810
+  PageRank: 0.002219
+  K-Core Number: 21
+
+Seed Mapped ID: 3980 (Original GML ID: 3980)
+  Degree: 59
+  Closeness Centrality: 0.225448
+  Harmonic Centrality: 973.469048
+  PageRank: 0.002170
+  K-Core Number: 7
+
+Seed Mapped ID: 78 (Original GML ID: 78)
+  Degree: 9
+  Closeness Centrality: 0.261241
+  Harmonic Centrality: 1147.419048
+  PageRank: 0.000217
+  K-Core Number: 9
+
+Seed Mapped ID: 259 (Original GML ID: 259)
+  Degree: 8
+  Closeness Centrality: 0.261224
+  Harmonic Centrality: 1146.919048
+  PageRank: 0.000237
+  K-Core Number: 5
+
+Seed Mapped ID: 3624 (Original GML ID: 3624)
+  Degree: 14
+  Closeness Centrality: 0.239402
+  Harmonic Centrality: 1068.183333
+  PageRank: 0.000290
+  K-Core Number: 7
+
+Seed Mapped ID: 99 (Original GML ID: 99)
+  Degree: 13
+  Closeness Centrality: 0.261308
+  Harmonic Centrality: 1149.419048
+  PageRank: 0.000299
+  K-Core Number: 7
+
+Seed Mapped ID: 3982 (Original GML ID: 3982)
+  Degree: 14
+  Closeness Centrality: 0.184089
+  Harmonic Centrality: 776.576190
+  PageRank: 0.000416
+  K-Core Number: 7
+
+Seed Mapped ID: 3200 (Original GML ID: 3200)
+  Degree: 11
+  Closeness Centrality: 0.282654
+  Harmonic Centrality: 1262.066667
+  PageRank: 0.000227
+  K-Core Number: 8
+
+Seed Mapped ID: 3251 (Original GML ID: 3251)
+  Degree: 9
+  Closeness Centrality: 0.282615
+  Harmonic Centrality: 1261.066667
+  PageRank: 0.000195
+  K-Core Number: 7
+

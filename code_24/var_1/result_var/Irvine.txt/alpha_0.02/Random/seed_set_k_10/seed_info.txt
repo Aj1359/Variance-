@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.02
+Algorithm: Random
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 12.90
+Average Closeness Centrality: 0.338014
+Average Harmonic Centrality: 675.443333
+Average PageRank: 0.000476
+Average K-Core Number: 7.60
+
+--- Individual Seed Details ---
+Seed Mapped ID: 901 (Original GML ID: 902)
+  Degree: 1
+  Closeness Centrality: 0.307771
+  Harmonic Centrality: 613.250000
+  PageRank: 0.000111
+  K-Core Number: 1
+
+Seed Mapped ID: 1429 (Original GML ID: 1430)
+  Degree: 3
+  Closeness Centrality: 0.332104
+  Harmonic Centrality: 661.183333
+  PageRank: 0.000168
+  K-Core Number: 3
+
+Seed Mapped ID: 1107 (Original GML ID: 1108)
+  Degree: 3
+  Closeness Centrality: 0.329551
+  Harmonic Centrality: 652.183333
+  PageRank: 0.000161
+  K-Core Number: 3
+
+Seed Mapped ID: 354 (Original GML ID: 355)
+  Degree: 16
+  Closeness Centrality: 0.370461
+  Harmonic Centrality: 743.650000
+  PageRank: 0.000512
+  K-Core Number: 15
+
+Seed Mapped ID: 1437 (Original GML ID: 1438)
+  Degree: 7
+  Closeness Centrality: 0.326866
+  Harmonic Centrality: 650.316667
+  PageRank: 0.000264
+  K-Core Number: 7
+
+Seed Mapped ID: 52 (Original GML ID: 53)
+  Degree: 66
+  Closeness Centrality: 0.395392
+  Harmonic Centrality: 810.433333
+  PageRank: 0.002335
+  K-Core Number: 20
+
+Seed Mapped ID: 1732 (Original GML ID: 1733)
+  Degree: 1
+  Closeness Centrality: 0.289800
+  Harmonic Centrality: 572.750000
+  PageRank: 0.000106
+  K-Core Number: 1
+
+Seed Mapped ID: 1194 (Original GML ID: 1195)
+  Degree: 7
+  Closeness Centrality: 0.352198
+  Harmonic Centrality: 705.233333
+  PageRank: 0.000272
+  K-Core Number: 7
+
+Seed Mapped ID: 502 (Original GML ID: 503)
+  Degree: 24
+  Closeness Centrality: 0.386955
+  Harmonic Centrality: 778.516667
+  PageRank: 0.000726
+  K-Core Number: 18
+
+Seed Mapped ID: 934 (Original GML ID: 935)
+  Degree: 1
+  Closeness Centrality: 0.289045
+  Harmonic Centrality: 566.916667
+  PageRank: 0.000105
+  K-Core Number: 1
+

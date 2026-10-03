@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.09
+Algorithm: MinDegree_hcn
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 26.60
+Average Closeness Centrality: 0.371376
+Average Harmonic Centrality: 396.113333
+Average PageRank: 0.000869
+Average K-Core Number: 14.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 879 (Original GML ID: 879)
+  Degree: 1
+  Closeness Centrality: 0.294263
+  Harmonic Centrality: 304.450000
+  PageRank: 0.000182
+  K-Core Number: 1
+
+Seed Mapped ID: 137 (Original GML ID: 137)
+  Degree: 83
+  Closeness Centrality: 0.454972
+  Harmonic Centrality: 495.033333
+  PageRank: 0.002448
+  K-Core Number: 33
+
+Seed Mapped ID: 213 (Original GML ID: 213)
+  Degree: 46
+  Closeness Centrality: 0.383933
+  Harmonic Centrality: 419.800000
+  PageRank: 0.001432
+  K-Core Number: 21
+
+Seed Mapped ID: 269 (Original GML ID: 269)
+  Degree: 82
+  Closeness Centrality: 0.456692
+  Harmonic Centrality: 496.200000
+  PageRank: 0.002343
+  K-Core Number: 34
+
+Seed Mapped ID: 67 (Original GML ID: 67)
+  Degree: 9
+  Closeness Centrality: 0.396211
+  Harmonic Centrality: 419.450000
+  PageRank: 0.000378
+  K-Core Number: 9
+
+Seed Mapped ID: 889 (Original GML ID: 889)
+  Degree: 4
+  Closeness Centrality: 0.333918
+  Harmonic Centrality: 350.300000
+  PageRank: 0.000250
+  K-Core Number: 4
+
+Seed Mapped ID: 899 (Original GML ID: 899)
+  Degree: 1
+  Closeness Centrality: 0.313957
+  Harmonic Centrality: 326.533333
+  PageRank: 0.000176
+  K-Core Number: 1
+
+Seed Mapped ID: 619 (Original GML ID: 619)
+  Degree: 8
+  Closeness Centrality: 0.359509
+  Harmonic Centrality: 380.950000
+  PageRank: 0.000364
+  K-Core Number: 8
+
+Seed Mapped ID: 260 (Original GML ID: 260)
+  Degree: 21
+  Closeness Centrality: 0.372824
+  Harmonic Centrality: 399.783333
+  PageRank: 0.000699
+  K-Core Number: 19
+
+Seed Mapped ID: 175 (Original GML ID: 175)
+  Degree: 11
+  Closeness Centrality: 0.347486
+  Harmonic Centrality: 368.633333
+  PageRank: 0.000417
+  K-Core Number: 11
+

@@ -1,0 +1,28 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.08
+Algorithm: Naive Myopic PPR
+Seed Set Size (k): 2
+
+--- Average Metrics for Seed Set ---
+Average Degree: 5.50
+Average Closeness Centrality: 0.080929
+Average Harmonic Centrality: 844.152850
+Average PageRank: 0.000100
+Average K-Core Number: 2.00
+
+--- Individual Seed Details ---
+Seed Mapped ID: 2892 (Original GML ID: 20449)
+  Degree: 11
+  Closeness Centrality: 0.161858
+  Harmonic Centrality: 1688.305700
+  PageRank: 0.000186
+  K-Core Number: 4
+
+Seed Mapped ID: 3564 (Original GML ID: 24772)
+  Degree: 0
+  Closeness Centrality: 0.000000
+  Harmonic Centrality: 0.000000
+  PageRank: 0.000015
+  K-Core Number: 0
+

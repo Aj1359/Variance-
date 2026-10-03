@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: EU.txt
+Alpha: 0.07
+Algorithm: MinDegree_hcn
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 44.90
+Average Closeness Centrality: 0.410927
+Average Harmonic Centrality: 443.696667
+Average PageRank: 0.001331
+Average K-Core Number: 25.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 181 (Original GML ID: 181)
+  Degree: 59
+  Closeness Centrality: 0.424214
+  Harmonic Centrality: 462.000000
+  PageRank: 0.001770
+  K-Core Number: 27
+
+Seed Mapped ID: 329 (Original GML ID: 329)
+  Degree: 96
+  Closeness Centrality: 0.465491
+  Harmonic Centrality: 507.366667
+  PageRank: 0.002553
+  K-Core Number: 34
+
+Seed Mapped ID: 248 (Original GML ID: 248)
+  Degree: 26
+  Closeness Centrality: 0.382111
+  Harmonic Centrality: 411.283333
+  PageRank: 0.000824
+  K-Core Number: 21
+
+Seed Mapped ID: 350 (Original GML ID: 350)
+  Degree: 23
+  Closeness Centrality: 0.383324
+  Harmonic Centrality: 411.333333
+  PageRank: 0.000968
+  K-Core Number: 18
+
+Seed Mapped ID: 135 (Original GML ID: 135)
+  Degree: 36
+  Closeness Centrality: 0.419427
+  Harmonic Centrality: 449.583333
+  PageRank: 0.001010
+  K-Core Number: 27
+
+Seed Mapped ID: 720 (Original GML ID: 720)
+  Degree: 23
+  Closeness Centrality: 0.365630
+  Harmonic Centrality: 392.816667
+  PageRank: 0.000779
+  K-Core Number: 19
+
+Seed Mapped ID: 221 (Original GML ID: 221)
+  Degree: 61
+  Closeness Centrality: 0.437267
+  Harmonic Centrality: 473.583333
+  PageRank: 0.001672
+  K-Core Number: 30
+
+Seed Mapped ID: 158 (Original GML ID: 158)
+  Degree: 47
+  Closeness Centrality: 0.424028
+  Harmonic Centrality: 457.783333
+  PageRank: 0.001386
+  K-Core Number: 28
+
+Seed Mapped ID: 569 (Original GML ID: 569)
+  Degree: 39
+  Closeness Centrality: 0.378668
+  Harmonic Centrality: 412.300000
+  PageRank: 0.001241
+  K-Core Number: 21
+
+Seed Mapped ID: 423 (Original GML ID: 423)
+  Degree: 39
+  Closeness Centrality: 0.429112
+  Harmonic Centrality: 458.916667
+  PageRank: 0.001109
+  K-Core Number: 26
+

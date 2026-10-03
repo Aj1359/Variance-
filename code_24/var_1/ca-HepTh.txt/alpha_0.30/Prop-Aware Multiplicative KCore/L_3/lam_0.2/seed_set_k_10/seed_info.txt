@@ -1,0 +1,85 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.30
+Algorithm: Prop-Aware Multiplicative KCore
+Parameters: L=3, Lambda=0.2
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 16.80
+Average Closeness Centrality: 0.178090
+Average Harmonic Centrality: 1881.558988
+Average PageRank: 0.000216
+Average K-Core Number: 9.40
+
+--- Individual Seed Details ---
+Seed Mapped ID: 5483 (Original GML ID: 39085)
+  Degree: 44
+  Closeness Centrality: 0.171358
+  Harmonic Centrality: 1811.766162
+  PageRank: 0.000253
+  K-Core Number: 31
+
+Seed Mapped ID: 3630 (Original GML ID: 25188)
+  Degree: 5
+  Closeness Centrality: 0.183608
+  Harmonic Centrality: 1934.860895
+  PageRank: 0.000100
+  K-Core Number: 3
+
+Seed Mapped ID: 7379 (Original GML ID: 51382)
+  Degree: 25
+  Closeness Centrality: 0.151405
+  Harmonic Centrality: 1585.420527
+  PageRank: 0.000130
+  K-Core Number: 23
+
+Seed Mapped ID: 7193 (Original GML ID: 50481)
+  Degree: 17
+  Closeness Centrality: 0.126071
+  Harmonic Centrality: 1297.890962
+  PageRank: 0.000453
+  K-Core Number: 3
+
+Seed Mapped ID: 7457 (Original GML ID: 51876)
+  Degree: 8
+  Closeness Centrality: 0.187677
+  Harmonic Centrality: 1982.969156
+  PageRank: 0.000136
+  K-Core Number: 4
+
+Seed Mapped ID: 6681 (Original GML ID: 46894)
+  Degree: 9
+  Closeness Centrality: 0.190532
+  Harmonic Centrality: 2019.925541
+  PageRank: 0.000136
+  K-Core Number: 6
+
+Seed Mapped ID: 4923 (Original GML ID: 34891)
+  Degree: 12
+  Closeness Centrality: 0.189942
+  Harmonic Centrality: 2023.798304
+  PageRank: 0.000182
+  K-Core Number: 6
+
+Seed Mapped ID: 5642 (Original GML ID: 39984)
+  Degree: 9
+  Closeness Centrality: 0.190888
+  Harmonic Centrality: 2023.363384
+  PageRank: 0.000137
+  K-Core Number: 7
+
+Seed Mapped ID: 108 (Original GML ID: 666)
+  Degree: 11
+  Closeness Centrality: 0.187156
+  Harmonic Centrality: 1979.210750
+  PageRank: 0.000184
+  K-Core Number: 5
+
+Seed Mapped ID: 9531 (Original GML ID: 66349)
+  Degree: 28
+  Closeness Centrality: 0.202261
+  Harmonic Centrality: 2156.384199
+  PageRank: 0.000448
+  K-Core Number: 6
+

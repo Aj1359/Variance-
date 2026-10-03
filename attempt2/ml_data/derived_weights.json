@@ -1,0 +1,137 @@
+{
+  "feature_names": [
+    "degree",
+    "norm_degree",
+    "clustering",
+    "curr_prob",
+    "deficit",
+    "min_neighbor_p",
+    "avg_neighbor_p",
+    "dist_to_seeds",
+    "low_p_neighbors",
+    "degree_centrality",
+    "local_density",
+    "shell_reach",
+    "local_homophily",
+    "group_deficit"
+  ],
+  "scoring_weights": {
+    "degree": {
+      "weight": 0.16913415491580963,
+      "shap_importance": 0.16913415491580963,
+      "linear_coef": 0.0018501528043008391,
+      "sign": 1
+    },
+    "norm_degree": {
+      "weight": 0.03729265555739403,
+      "shap_importance": 0.03729265555739403,
+      "linear_coef": 0.00694034498798322,
+      "sign": 1
+    },
+    "clustering": {
+      "weight": 0.042736079543828964,
+      "shap_importance": 0.042736079543828964,
+      "linear_coef": 0.0004975579855912553,
+      "sign": 1
+    },
+    "curr_prob": {
+      "weight": -0.022316904738545418,
+      "shap_importance": 0.022316904738545418,
+      "linear_coef": -0.004903701259115409,
+      "sign": -1
+    },
+    "deficit": {
+      "weight": 0.16348810493946075,
+      "shap_importance": 0.16348810493946075,
+      "linear_coef": 0.006491227791747569,
+      "sign": 1
+    },
+    "min_neighbor_p": {
+      "weight": 0.0643618106842041,
+      "shap_importance": 0.0643618106842041,
+      "linear_coef": 0.005240724029676087,
+      "sign": 1
+    },
+    "avg_neighbor_p": {
+      "weight": -0.050359759479761124,
+      "shap_importance": 0.050359759479761124,
+      "linear_coef": -0.005596582233009559,
+      "sign": -1
+    },
+    "dist_to_seeds": {
+      "weight": -0.1266038715839386,
+      "shap_importance": 0.1266038715839386,
+      "linear_coef": -1.3689358397479985e-07,
+      "sign": -1
+    },
+    "low_p_neighbors": {
+      "weight": -0.06749642640352249,
+      "shap_importance": 0.06749642640352249,
+      "linear_coef": -0.0005345997672148751,
+      "sign": -1
+    },
+    "degree_centrality": {
+      "weight": -0.03756333515048027,
+      "shap_importance": 0.03756333515048027,
+      "linear_coef": -1.7922319349380815,
+      "sign": -1
+    },
+    "local_density": {
+      "weight": 0.029286077246069908,
+      "shap_importance": 0.029286077246069908,
+      "linear_coef": 0.0004975580792548526,
+      "sign": 1
+    },
+    "shell_reach": {
+      "weight": -0.025882121175527573,
+      "shap_importance": 0.025882121175527573,
+      "linear_coef": -2.7227504696258203e-07,
+      "sign": -1
+    },
+    "local_homophily": {
+      "weight": 0.0023759438190609217,
+      "shap_importance": 0.0023759438190609217,
+      "linear_coef": 0.000312024552219889,
+      "sign": 1
+    },
+    "group_deficit": {
+      "weight": -0.1611027866601944,
+      "shap_importance": 0.1611027866601944,
+      "linear_coef": -0.00031063378249021617,
+      "sign": -1
+    }
+  },
+  "model_r2": -1.016630128802961,
+  "linear_r2": 0.446353151293967,
+  "formula": "score(v) = +0.1691 \u00d7 degree +0.1635 \u00d7 deficit -0.1611 \u00d7 group_deficit -0.1266 \u00d7 dist_to_seeds -0.0675 \u00d7 low_p_neighbors +0.0644 \u00d7 min_neighbor_p -0.0504 \u00d7 avg_neighbor_p",
+  "top_features": [
+    [
+      "degree",
+      0.16913415491580963
+    ],
+    [
+      "deficit",
+      0.16348810493946075
+    ],
+    [
+      "group_deficit",
+      -0.1611027866601944
+    ],
+    [
+      "dist_to_seeds",
+      -0.1266038715839386
+    ],
+    [
+      "low_p_neighbors",
+      -0.06749642640352249
+    ],
+    [
+      "min_neighbor_p",
+      0.0643618106842041
+    ],
+    [
+      "avg_neighbor_p",
+      -0.050359759479761124
+    ]
+  ]
+}

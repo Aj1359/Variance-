@@ -1,0 +1,49 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.08
+Algorithm: Random
+Seed Set Size (k): 5
+
+--- Average Metrics for Seed Set ---
+Average Degree: 46.20
+Average Closeness Centrality: 0.288999
+Average Harmonic Centrality: 1283.743810
+Average PageRank: 0.000312
+Average K-Core Number: 19.20
+
+--- Individual Seed Details ---
+Seed Mapped ID: 3882 (Original GML ID: 3882)
+  Degree: 4
+  Closeness Centrality: 0.239261
+  Harmonic Centrality: 1063.183333
+  PageRank: 0.000083
+  K-Core Number: 4
+
+Seed Mapped ID: 525 (Original GML ID: 525)
+  Degree: 69
+  Closeness Centrality: 0.309117
+  Harmonic Centrality: 1341.900000
+  PageRank: 0.000443
+  K-Core Number: 31
+
+Seed Mapped ID: 1042 (Original GML ID: 1042)
+  Degree: 15
+  Closeness Centrality: 0.315296
+  Harmonic Centrality: 1397.316667
+  PageRank: 0.000128
+  K-Core Number: 14
+
+Seed Mapped ID: 896 (Original GML ID: 896)
+  Degree: 126
+  Closeness Centrality: 0.319943
+  Harmonic Centrality: 1464.900000
+  PageRank: 0.000581
+  K-Core Number: 37
+
+Seed Mapped ID: 116 (Original GML ID: 116)
+  Degree: 17
+  Closeness Centrality: 0.261376
+  Harmonic Centrality: 1151.419048
+  PageRank: 0.000325
+  K-Core Number: 10
+

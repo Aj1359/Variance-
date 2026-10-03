@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.03
+Algorithm: Random
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 2.80
+Average Closeness Centrality: 0.107086
+Average Harmonic Centrality: 1101.441363
+Average PageRank: 0.000088
+Average K-Core Number: 2.20
+
+--- Individual Seed Details ---
+Seed Mapped ID: 9843 (Original GML ID: 68470)
+  Degree: 2
+  Closeness Centrality: 0.121973
+  Harmonic Centrality: 1239.009221
+  PageRank: 0.000075
+  K-Core Number: 2
+
+Seed Mapped ID: 2958 (Original GML ID: 20867)
+  Degree: 1
+  Closeness Centrality: 0.000101
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000101
+  K-Core Number: 1
+
+Seed Mapped ID: 2885 (Original GML ID: 20411)
+  Degree: 2
+  Closeness Centrality: 0.152275
+  Harmonic Centrality: 1578.888348
+  PageRank: 0.000049
+  K-Core Number: 2
+
+Seed Mapped ID: 2345 (Original GML ID: 16036)
+  Degree: 1
+  Closeness Centrality: 0.000101
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000101
+  K-Core Number: 1
+
+Seed Mapped ID: 139 (Original GML ID: 805)
+  Degree: 6
+  Closeness Centrality: 0.166945
+  Harmonic Centrality: 1756.342075
+  PageRank: 0.000110
+  K-Core Number: 3
+
+Seed Mapped ID: 8435 (Original GML ID: 58787)
+  Degree: 6
+  Closeness Centrality: 0.112082
+  Harmonic Centrality: 1143.190099
+  PageRank: 0.000133
+  K-Core Number: 4
+
+Seed Mapped ID: 4603 (Original GML ID: 32467)
+  Degree: 2
+  Closeness Centrality: 0.103342
+  Harmonic Centrality: 1045.608727
+  PageRank: 0.000073
+  K-Core Number: 2
+
+Seed Mapped ID: 7745 (Original GML ID: 53721)
+  Degree: 3
+  Closeness Centrality: 0.132444
+  Harmonic Centrality: 1355.293984
+  PageRank: 0.000109
+  K-Core Number: 2
+
+Seed Mapped ID: 7448 (Original GML ID: 51833)
+  Degree: 2
+  Closeness Centrality: 0.149962
+  Harmonic Centrality: 1549.088059
+  PageRank: 0.000055
+  K-Core Number: 2
+
+Seed Mapped ID: 1178 (Original GML ID: 8127)
+  Degree: 3
+  Closeness Centrality: 0.131639
+  Harmonic Centrality: 1344.993118
+  PageRank: 0.000073
+  K-Core Number: 3
+

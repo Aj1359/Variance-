@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: ca-GrQc.txt
+Alpha: 0.09
+Algorithm: MinDegree_hcn
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 3.20
+Average Closeness Centrality: 0.080053
+Average Harmonic Centrality: 447.048267
+Average PageRank: 0.000161
+Average K-Core Number: 2.80
+
+--- Individual Seed Details ---
+Seed Mapped ID: 660 (Original GML ID: 3279)
+  Degree: 1
+  Closeness Centrality: 0.000191
+  Harmonic Centrality: 1.000000
+  PageRank: 0.000191
+  K-Core Number: 1
+
+Seed Mapped ID: 4639 (Original GML ID: 23095)
+  Degree: 3
+  Closeness Centrality: 0.145926
+  Harmonic Centrality: 827.578355
+  PageRank: 0.000072
+  K-Core Number: 3
+
+Seed Mapped ID: 191 (Original GML ID: 950)
+  Degree: 7
+  Closeness Centrality: 0.153045
+  Harmonic Centrality: 877.591739
+  PageRank: 0.000161
+  K-Core Number: 5
+
+Seed Mapped ID: 5144 (Original GML ID: 25718)
+  Degree: 3
+  Closeness Centrality: 0.111770
+  Harmonic Centrality: 613.885304
+  PageRank: 0.000146
+  K-Core Number: 3
+
+Seed Mapped ID: 479 (Original GML ID: 2348)
+  Degree: 1
+  Closeness Centrality: 0.126422
+  Harmonic Centrality: 694.199459
+  PageRank: 0.000063
+  K-Core Number: 1
+
+Seed Mapped ID: 429 (Original GML ID: 2142)
+  Degree: 5
+  Closeness Centrality: 0.120038
+  Harmonic Centrality: 658.265765
+  PageRank: 0.000227
+  K-Core Number: 4
+
+Seed Mapped ID: 4084 (Original GML ID: 20233)
+  Degree: 1
+  Closeness Centrality: 0.000343
+  Harmonic Centrality: 2.000000
+  PageRank: 0.000141
+  K-Core Number: 1
+
+Seed Mapped ID: 3801 (Original GML ID: 18995)
+  Degree: 4
+  Closeness Centrality: 0.141462
+  Harmonic Centrality: 788.962049
+  PageRank: 0.000150
+  K-Core Number: 4
+
+Seed Mapped ID: 3876 (Original GML ID: 19314)
+  Degree: 5
+  Closeness Centrality: 0.000954
+  Harmonic Centrality: 5.000000
+  PageRank: 0.000191
+  K-Core Number: 5
+
+Seed Mapped ID: 5014 (Original GML ID: 25136)
+  Degree: 2
+  Closeness Centrality: 0.000382
+  Harmonic Centrality: 2.000000
+  PageRank: 0.000266
+  K-Core Number: 1
+

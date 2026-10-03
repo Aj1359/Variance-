@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.09
+Algorithm: Naive Myopic
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 109.60
+Average Closeness Centrality: 0.211587
+Average Harmonic Centrality: 923.916905
+Average PageRank: 0.000883
+Average K-Core Number: 10.90
+
+--- Individual Seed Details ---
+Seed Mapped ID: 107 (Original GML ID: 107)
+  Degree: 1045
+  Closeness Centrality: 0.459699
+  Harmonic Centrality: 2287.483333
+  PageRank: 0.006936
+  K-Core Number: 70
+
+Seed Mapped ID: 3986 (Original GML ID: 3986)
+  Degree: 9
+  Closeness Centrality: 0.184047
+  Harmonic Centrality: 774.076190
+  PageRank: 0.000289
+  K-Core Number: 6
+
+Seed Mapped ID: 3987 (Original GML ID: 3987)
+  Degree: 2
+  Closeness Centrality: 0.183989
+  Harmonic Centrality: 770.576190
+  PageRank: 0.000119
+  K-Core Number: 2
+
+Seed Mapped ID: 3990 (Original GML ID: 3990)
+  Degree: 4
+  Closeness Centrality: 0.184005
+  Harmonic Centrality: 771.576190
+  PageRank: 0.000191
+  K-Core Number: 4
+
+Seed Mapped ID: 3993 (Original GML ID: 3993)
+  Degree: 6
+  Closeness Centrality: 0.184022
+  Harmonic Centrality: 772.576190
+  PageRank: 0.000204
+  K-Core Number: 6
+
+Seed Mapped ID: 3994 (Original GML ID: 3994)
+  Degree: 11
+  Closeness Centrality: 0.184064
+  Harmonic Centrality: 775.076190
+  PageRank: 0.000337
+  K-Core Number: 7
+
+Seed Mapped ID: 3995 (Original GML ID: 3995)
+  Degree: 9
+  Closeness Centrality: 0.184047
+  Harmonic Centrality: 774.076190
+  PageRank: 0.000288
+  K-Core Number: 6
+
+Seed Mapped ID: 3996 (Original GML ID: 3996)
+  Degree: 4
+  Closeness Centrality: 0.184005
+  Harmonic Centrality: 771.576190
+  PageRank: 0.000169
+  K-Core Number: 3
+
+Seed Mapped ID: 3999 (Original GML ID: 3999)
+  Degree: 4
+  Closeness Centrality: 0.184005
+  Harmonic Centrality: 771.576190
+  PageRank: 0.000178
+  K-Core Number: 3
+
+Seed Mapped ID: 4001 (Original GML ID: 4001)
+  Degree: 2
+  Closeness Centrality: 0.183989
+  Harmonic Centrality: 770.576190
+  PageRank: 0.000119
+  K-Core Number: 2
+

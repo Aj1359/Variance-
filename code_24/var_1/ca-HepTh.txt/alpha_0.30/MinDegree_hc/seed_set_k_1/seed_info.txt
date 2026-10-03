@@ -1,0 +1,21 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.30
+Algorithm: MinDegree_hc
+Seed Set Size (k): 1
+
+--- Average Metrics for Seed Set ---
+Average Degree: 2.00
+Average Closeness Centrality: 0.125977
+Average Harmonic Centrality: 1282.130289
+Average PageRank: 0.000060
+Average K-Core Number: 2.00
+
+--- Individual Seed Details ---
+Seed Mapped ID: 4416 (Original GML ID: 31197)
+  Degree: 2
+  Closeness Centrality: 0.125977
+  Harmonic Centrality: 1282.130289
+  PageRank: 0.000060
+  K-Core Number: 2
+

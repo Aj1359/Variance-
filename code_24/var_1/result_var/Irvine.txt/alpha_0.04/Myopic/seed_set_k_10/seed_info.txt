@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.04
+Algorithm: Myopic
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 27.40
+Average Closeness Centrality: 0.283469
+Average Harmonic Centrality: 563.474286
+Average PageRank: 0.000965
+Average K-Core Number: 3.80
+
+--- Individual Seed Details ---
+Seed Mapped ID: 102 (Original GML ID: 103)
+  Degree: 255
+  Closeness Centrality: 0.448732
+  Harmonic Centrality: 964.116667
+  PageRank: 0.008017
+  K-Core Number: 20
+
+Seed Mapped ID: 1536 (Original GML ID: 1537)
+  Degree: 2
+  Closeness Centrality: 0.264890
+  Harmonic Centrality: 518.666667
+  PageRank: 0.000151
+  K-Core Number: 2
+
+Seed Mapped ID: 20 (Original GML ID: 21)
+  Degree: 2
+  Closeness Centrality: 0.263742
+  Harmonic Centrality: 516.133333
+  PageRank: 0.000196
+  K-Core Number: 2
+
+Seed Mapped ID: 263 (Original GML ID: 264)
+  Degree: 2
+  Closeness Centrality: 0.269470
+  Harmonic Centrality: 526.850000
+  PageRank: 0.000174
+  K-Core Number: 2
+
+Seed Mapped ID: 525 (Original GML ID: 526)
+  Degree: 2
+  Closeness Centrality: 0.275211
+  Harmonic Centrality: 539.400000
+  PageRank: 0.000150
+  K-Core Number: 2
+
+Seed Mapped ID: 1843 (Original GML ID: 1844)
+  Degree: 3
+  Closeness Centrality: 0.252276
+  Harmonic Centrality: 494.933333
+  PageRank: 0.000284
+  K-Core Number: 2
+
+Seed Mapped ID: 137 (Original GML ID: 138)
+  Degree: 2
+  Closeness Centrality: 0.289978
+  Harmonic Centrality: 569.050000
+  PageRank: 0.000169
+  K-Core Number: 2
+
+Seed Mapped ID: 629 (Original GML ID: 630)
+  Degree: 2
+  Closeness Centrality: 0.258962
+  Harmonic Centrality: 506.400000
+  PageRank: 0.000185
+  K-Core Number: 2
+
+Seed Mapped ID: 1203 (Original GML ID: 1204)
+  Degree: 2
+  Closeness Centrality: 0.242263
+  Harmonic Centrality: 471.276190
+  PageRank: 0.000173
+  K-Core Number: 2
+
+Seed Mapped ID: 622 (Original GML ID: 623)
+  Degree: 2
+  Closeness Centrality: 0.269162
+  Harmonic Centrality: 527.916667
+  PageRank: 0.000150
+  K-Core Number: 2
+

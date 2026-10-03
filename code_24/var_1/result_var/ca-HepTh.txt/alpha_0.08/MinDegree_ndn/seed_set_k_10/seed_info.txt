@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: ca-HepTh.txt
+Alpha: 0.08
+Algorithm: MinDegree_ndn
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 6.00
+Average Closeness Centrality: 0.153982
+Average Harmonic Centrality: 1600.025834
+Average PageRank: 0.000112
+Average K-Core Number: 3.10
+
+--- Individual Seed Details ---
+Seed Mapped ID: 3747 (Original GML ID: 25982)
+  Degree: 23
+  Closeness Centrality: 0.181342
+  Harmonic Centrality: 1922.021573
+  PageRank: 0.000385
+  K-Core Number: 5
+
+Seed Mapped ID: 1192 (Original GML ID: 8208)
+  Degree: 3
+  Closeness Centrality: 0.140503
+  Harmonic Centrality: 1447.449301
+  PageRank: 0.000062
+  K-Core Number: 3
+
+Seed Mapped ID: 3567 (Original GML ID: 24781)
+  Degree: 1
+  Closeness Centrality: 0.160961
+  Harmonic Centrality: 1669.412734
+  PageRank: 0.000028
+  K-Core Number: 1
+
+Seed Mapped ID: 8396 (Original GML ID: 58507)
+  Degree: 6
+  Closeness Centrality: 0.186624
+  Harmonic Centrality: 1972.476227
+  PageRank: 0.000090
+  K-Core Number: 4
+
+Seed Mapped ID: 9823 (Original GML ID: 68317)
+  Degree: 1
+  Closeness Centrality: 0.145966
+  Harmonic Centrality: 1506.310148
+  PageRank: 0.000030
+  K-Core Number: 1
+
+Seed Mapped ID: 1504 (Original GML ID: 10234)
+  Degree: 5
+  Closeness Centrality: 0.126084
+  Harmonic Centrality: 1286.401368
+  PageRank: 0.000100
+  K-Core Number: 5
+
+Seed Mapped ID: 3383 (Original GML ID: 23544)
+  Degree: 2
+  Closeness Centrality: 0.130991
+  Harmonic Centrality: 1340.048374
+  PageRank: 0.000071
+  K-Core Number: 2
+
+Seed Mapped ID: 8298 (Original GML ID: 57678)
+  Degree: 6
+  Closeness Centrality: 0.171393
+  Harmonic Centrality: 1796.712013
+  PageRank: 0.000096
+  K-Core Number: 4
+
+Seed Mapped ID: 7057 (Original GML ID: 49480)
+  Degree: 9
+  Closeness Centrality: 0.164861
+  Harmonic Centrality: 1719.171825
+  PageRank: 0.000182
+  K-Core Number: 3
+
+Seed Mapped ID: 1185 (Original GML ID: 8167)
+  Degree: 4
+  Closeness Centrality: 0.131091
+  Harmonic Centrality: 1340.254773
+  PageRank: 0.000081
+  K-Core Number: 3
+

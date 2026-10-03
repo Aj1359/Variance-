@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.09
+Algorithm: Random
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 32.30
+Average Closeness Centrality: 0.360395
+Average Harmonic Centrality: 724.885000
+Average PageRank: 0.001067
+Average K-Core Number: 11.20
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1303 (Original GML ID: 1304)
+  Degree: 6
+  Closeness Centrality: 0.345932
+  Harmonic Centrality: 689.983333
+  PageRank: 0.000240
+  K-Core Number: 6
+
+Seed Mapped ID: 758 (Original GML ID: 759)
+  Degree: 1
+  Closeness Centrality: 0.302926
+  Harmonic Centrality: 594.916667
+  PageRank: 0.000105
+  K-Core Number: 1
+
+Seed Mapped ID: 139 (Original GML ID: 140)
+  Degree: 21
+  Closeness Centrality: 0.369663
+  Harmonic Centrality: 745.566667
+  PageRank: 0.000672
+  K-Core Number: 15
+
+Seed Mapped ID: 678 (Original GML ID: 679)
+  Degree: 85
+  Closeness Centrality: 0.410272
+  Harmonic Centrality: 843.650000
+  PageRank: 0.002787
+  K-Core Number: 20
+
+Seed Mapped ID: 1277 (Original GML ID: 1278)
+  Degree: 1
+  Closeness Centrality: 0.298279
+  Harmonic Centrality: 585.850000
+  PageRank: 0.000110
+  K-Core Number: 1
+
+Seed Mapped ID: 1161 (Original GML ID: 1162)
+  Degree: 3
+  Closeness Centrality: 0.302975
+  Harmonic Centrality: 595.416667
+  PageRank: 0.000163
+  K-Core Number: 3
+
+Seed Mapped ID: 1001 (Original GML ID: 1002)
+  Degree: 7
+  Closeness Centrality: 0.349911
+  Harmonic Centrality: 697.583333
+  PageRank: 0.000285
+  K-Core Number: 6
+
+Seed Mapped ID: 316 (Original GML ID: 317)
+  Degree: 60
+  Closeness Centrality: 0.409292
+  Harmonic Centrality: 831.983333
+  PageRank: 0.001824
+  K-Core Number: 20
+
+Seed Mapped ID: 455 (Original GML ID: 456)
+  Degree: 50
+  Closeness Centrality: 0.402909
+  Harmonic Centrality: 817.833333
+  PageRank: 0.001477
+  K-Core Number: 20
+
+Seed Mapped ID: 1623 (Original GML ID: 1624)
+  Degree: 89
+  Closeness Centrality: 0.411795
+  Harmonic Centrality: 846.066667
+  PageRank: 0.003004
+  K-Core Number: 20
+

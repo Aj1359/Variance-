@@ -1,0 +1,84 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.06
+Algorithm: Myopic
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 110.50
+Average Closeness Centrality: 0.219835
+Average Harmonic Centrality: 972.140357
+Average PageRank: 0.000876
+Average K-Core Number: 10.60
+
+--- Individual Seed Details ---
+Seed Mapped ID: 107 (Original GML ID: 107)
+  Degree: 1045
+  Closeness Centrality: 0.459699
+  Harmonic Centrality: 2287.483333
+  PageRank: 0.006936
+  K-Core Number: 70
+
+Seed Mapped ID: 818 (Original GML ID: 818)
+  Degree: 16
+  Closeness Centrality: 0.178388
+  Harmonic Centrality: 791.267857
+  PageRank: 0.000264
+  K-Core Number: 8
+
+Seed Mapped ID: 4030 (Original GML ID: 4030)
+  Degree: 19
+  Closeness Centrality: 0.184131
+  Harmonic Centrality: 779.076190
+  PageRank: 0.000554
+  K-Core Number: 7
+
+Seed Mapped ID: 879 (Original GML ID: 879)
+  Degree: 6
+  Closeness Centrality: 0.213402
+  Harmonic Centrality: 927.257143
+  PageRank: 0.000187
+  K-Core Number: 4
+
+Seed Mapped ID: 4007 (Original GML ID: 4007)
+  Degree: 4
+  Closeness Centrality: 0.184005
+  Harmonic Centrality: 771.576190
+  PageRank: 0.000191
+  K-Core Number: 4
+
+Seed Mapped ID: 4001 (Original GML ID: 4001)
+  Degree: 2
+  Closeness Centrality: 0.183989
+  Harmonic Centrality: 770.576190
+  PageRank: 0.000119
+  K-Core Number: 2
+
+Seed Mapped ID: 4027 (Original GML ID: 4027)
+  Degree: 7
+  Closeness Centrality: 0.184031
+  Harmonic Centrality: 773.076190
+  PageRank: 0.000269
+  K-Core Number: 5
+
+Seed Mapped ID: 884 (Original GML ID: 884)
+  Degree: 4
+  Closeness Centrality: 0.213380
+  Harmonic Centrality: 926.257143
+  PageRank: 0.000122
+  K-Core Number: 4
+
+Seed Mapped ID: 3984 (Original GML ID: 3984)
+  Degree: 1
+  Closeness Centrality: 0.183980
+  Harmonic Centrality: 770.076190
+  PageRank: 0.000068
+  K-Core Number: 1
+
+Seed Mapped ID: 883 (Original GML ID: 883)
+  Degree: 1
+  Closeness Centrality: 0.213346
+  Harmonic Centrality: 924.757143
+  PageRank: 0.000054
+  K-Core Number: 1
+

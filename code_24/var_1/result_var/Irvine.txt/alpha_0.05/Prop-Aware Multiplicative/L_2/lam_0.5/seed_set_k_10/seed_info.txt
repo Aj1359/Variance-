@@ -1,0 +1,85 @@
+=== Seed Set Report ===
+Network: Irvine.txt
+Alpha: 0.05
+Algorithm: Prop-Aware Multiplicative
+Parameters: L=2, Lambda=0.5
+Seed Set Size (k): 10
+
+--- Average Metrics for Seed Set ---
+Average Degree: 47.20
+Average Closeness Centrality: 0.379730
+Average Harmonic Centrality: 770.936667
+Average PageRank: 0.001859
+Average K-Core Number: 13.70
+
+--- Individual Seed Details ---
+Seed Mapped ID: 8 (Original GML ID: 9)
+  Degree: 241
+  Closeness Centrality: 0.461807
+  Harmonic Centrality: 977.450000
+  PageRank: 0.008822
+  K-Core Number: 20
+
+Seed Mapped ID: 851 (Original GML ID: 852)
+  Degree: 22
+  Closeness Centrality: 0.371922
+  Harmonic Centrality: 751.133333
+  PageRank: 0.001004
+  K-Core Number: 11
+
+Seed Mapped ID: 1182 (Original GML ID: 1183)
+  Degree: 34
+  Closeness Centrality: 0.383493
+  Harmonic Centrality: 776.400000
+  PageRank: 0.001352
+  K-Core Number: 17
+
+Seed Mapped ID: 1268 (Original GML ID: 1269)
+  Degree: 50
+  Closeness Centrality: 0.363745
+  Harmonic Centrality: 743.383333
+  PageRank: 0.002212
+  K-Core Number: 18
+
+Seed Mapped ID: 0 (Original GML ID: 1)
+  Degree: 35
+  Closeness Centrality: 0.379404
+  Harmonic Centrality: 768.700000
+  PageRank: 0.001529
+  K-Core Number: 15
+
+Seed Mapped ID: 1508 (Original GML ID: 1509)
+  Degree: 26
+  Closeness Centrality: 0.362905
+  Harmonic Centrality: 731.666667
+  PageRank: 0.001022
+  K-Core Number: 13
+
+Seed Mapped ID: 1061 (Original GML ID: 1062)
+  Degree: 15
+  Closeness Centrality: 0.353584
+  Harmonic Centrality: 709.116667
+  PageRank: 0.000725
+  K-Core Number: 9
+
+Seed Mapped ID: 1486 (Original GML ID: 1487)
+  Degree: 23
+  Closeness Centrality: 0.378643
+  Harmonic Centrality: 762.516667
+  PageRank: 0.000841
+  K-Core Number: 14
+
+Seed Mapped ID: 1307 (Original GML ID: 1308)
+  Degree: 9
+  Closeness Centrality: 0.367359
+  Harmonic Centrality: 737.183333
+  PageRank: 0.000349
+  K-Core Number: 8
+
+Seed Mapped ID: 55 (Original GML ID: 56)
+  Degree: 17
+  Closeness Centrality: 0.374433
+  Harmonic Centrality: 751.816667
+  PageRank: 0.000735
+  K-Core Number: 12
+

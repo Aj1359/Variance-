@@ -1,0 +1,21 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.06
+Algorithm: MinDegree_hcn
+Seed Set Size (k): 1
+
+--- Average Metrics for Seed Set ---
+Average Degree: 24.00
+Average Closeness Centrality: 0.335215
+Average Harmonic Centrality: 1458.066667
+Average PageRank: 0.000234
+Average K-Core Number: 16.00
+
+--- Individual Seed Details ---
+Seed Mapped ID: 1421 (Original GML ID: 1421)
+  Degree: 24
+  Closeness Centrality: 0.335215
+  Harmonic Centrality: 1458.066667
+  PageRank: 0.000234
+  K-Core Number: 16
+

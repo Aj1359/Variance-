@@ -1,0 +1,77 @@
+=== Seed Set Report ===
+Network: Facebook.txt
+Alpha: 0.03
+Algorithm: Naive Myopic
+Seed Set Size (k): 9
+
+--- Average Metrics for Seed Set ---
+Average Degree: 125.11
+Average Closeness Centrality: 0.283309
+Average Harmonic Centrality: 1274.592857
+Average PageRank: 0.000969
+Average K-Core Number: 14.22
+
+--- Individual Seed Details ---
+Seed Mapped ID: 107 (Original GML ID: 107)
+  Degree: 1045
+  Closeness Centrality: 0.459699
+  Harmonic Centrality: 2287.483333
+  PageRank: 0.006936
+  K-Core Number: 70
+
+Seed Mapped ID: 1 (Original GML ID: 1)
+  Degree: 17
+  Closeness Centrality: 0.261376
+  Harmonic Centrality: 1151.419048
+  PageRank: 0.000236
+  K-Core Number: 13
+
+Seed Mapped ID: 2 (Original GML ID: 2)
+  Degree: 10
+  Closeness Centrality: 0.261258
+  Harmonic Centrality: 1147.919048
+  PageRank: 0.000203
+  K-Core Number: 9
+
+Seed Mapped ID: 4 (Original GML ID: 4)
+  Degree: 10
+  Closeness Centrality: 0.261258
+  Harmonic Centrality: 1147.919048
+  PageRank: 0.000238
+  K-Core Number: 9
+
+Seed Mapped ID: 6 (Original GML ID: 6)
+  Degree: 6
+  Closeness Centrality: 0.261190
+  Harmonic Centrality: 1145.919048
+  PageRank: 0.000180
+  K-Core Number: 5
+
+Seed Mapped ID: 8 (Original GML ID: 8)
+  Degree: 8
+  Closeness Centrality: 0.261224
+  Harmonic Centrality: 1146.919048
+  PageRank: 0.000237
+  K-Core Number: 5
+
+Seed Mapped ID: 17 (Original GML ID: 17)
+  Degree: 13
+  Closeness Centrality: 0.261308
+  Harmonic Centrality: 1149.419048
+  PageRank: 0.000260
+  K-Core Number: 9
+
+Seed Mapped ID: 18 (Original GML ID: 18)
+  Degree: 1
+  Closeness Centrality: 0.261106
+  Harmonic Centrality: 1143.419048
+  PageRank: 0.000053
+  K-Core Number: 1
+
+Seed Mapped ID: 19 (Original GML ID: 19)
+  Degree: 16
+  Closeness Centrality: 0.261359
+  Harmonic Centrality: 1150.919048
+  PageRank: 0.000381
+  K-Core Number: 7
+

@@ -1,0 +1,6 @@
+# Candidate Selection Report
+**Network:** ca-GrQc | **Alpha:** 0.3 | **K:** 20 | **CC:** 5_percent
+
+| Iteration | Candidates in Epsilon Band | Candidates Filtered by CC | Seeds Added |
+|---|---|---|---|
+| 1 | 5242 | 262 | 20 |

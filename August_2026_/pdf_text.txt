@@ -1,0 +1,1469 @@
+
+--- PAGE 1 ---
+Fast algorithms to improve fair information access in networks
+Dennis Robert Windham1, Caroline J. Wendt 1, Alex Crane 2, Madelyn J Warr 2, Freda Shi 2,
+Sorelle A. Friedler3, Blair D. Sullivan 2, Aaron Clauset 1,4,5
+1Department of Computer Science, University of Colorado
+2University of Utah
+3Haverford College
+4BioFrontiers Institute, University of Colorado
+5Santa Fe Institute
+ABSTRACT
+We consider the problem of selecting𝑘 seed nodes in a network to
+maximize the minimum probability of activation under an indepen-
+dent cascade beginning at these seeds. The motivation is to promote
+fairness by ensuring that even the least advantaged members of
+the network have good access to information. Our problem can be
+viewed as a variant of the classic influence maximization objective,
+but it appears somewhat more difficult to solve: only heuristics
+are known. Moreover, the scalability of these methods is sharply
+constrained by the need to repeatedly estimate access probabilities.
+We design and evaluate a suite of 10 new scalable algorithms
+which crucially do not require probability estimation. To facilitate
+comparison with the state-of-the-art, we make three more contribu-
+tions which may be of broader interest. We introduce a principled
+method of selecting a pairwise information transmission parameter
+used in experimental evaluations, as well as a new performance
+metric which allows for comparison of algorithms across a range of
+values for the parameter𝑘. Finally, we provide a new benchmark
+corpus of 174 networks drawn from 6 domains. Our algorithms re-
+tain most of the performance of the state-of-the-art while reducing
+running time by orders of magnitude. Specifically, a meta-learner
+approach is on average only 20% less effective than the state-of-the-
+art on held-out data, but about 75− 130 times faster. Further, the
+meta-learner’s performance exceeds the state-of-the-art on about
+20% of networks, and the magnitude of its running time advantage
+is maintained on much larger networks.
+1 INTRODUCTION
+Influence maximization [11, 30] is one of the most intensively stud-
+ied problems in data mining, machine learning, and social network
+analysis. Given some model of information diffusion, commonly
+the independent cascade of Kempe, Kleinberg, and Tardos [30], the
+task is to determine where we should seed information such that
+it spreads as widely as possible. Formally, given a graph 𝐺 and
+𝑆⊆𝑉(𝐺), for each𝑖∈𝑉(𝐺) let𝜋𝑖(𝑆) denote the probability with
+which𝑖 is activated by an independent cascade seeded at𝑆; we will
+just write𝜋𝑖 when the set𝑆 is clear. Then for a given budget𝑘, in-
+fluence maximization is the problem of identifying a set𝑆⊆𝑉(𝐺)
+of cardinality𝑘 which maximizes ˝
+𝑖∈𝑉(𝐺)𝜋𝑖.
+Influence maximization is commonly motivated by commercial
+advertising, e.g., [11, 15, 40] but is also relevant in various other
+applications, including public health [31, 51], the distribution of eco-
+nomic opportunities [2], and the spread of scientific knowledge [41].
+In these applications, the desiderata include not only widespread
+but also fair dissemination of information. The difficulty of the
+latter goal is a natural consequence of structural heterogeneity in
+networks. Highly-connected or centrally located individuals have
+more opportunities to receive and spread information [12, 38, 49],
+while peripheral individuals with few connections participate less
+often in information exchanges [18, 38]. For example, in a pandemic,
+access to crucial resources—such as money, food and healthcare—is
+more difficult for socially disadvantaged groups, in part due to their
+more limited connectedness in social networks [20]. Similarly, con-
+nectedness shapes employment opportunities in professional social
+networks such as LinkedIn: well-connected job seekers are likely
+to fill lucrative openings sooner than others [ 50]. This situation
+has motivated the study of several variations of influence maxi-
+mization, for example to ensure equitable information access with
+respect to demographic groups [45]. In this paper, we focus on the
+formulation of Fish et al. [18], which adopts a Rawlsian [39] notion
+of fairness in which the goal is to improve the information access
+of the worst-off individuals. Formally, the problem is as follows:
+Maximin Influence Maximization
+Input: A graph𝐺 =(𝑉,𝐸) and an integer𝑘.
+Task: Select𝑘 vertices𝑆⊆𝑉 maximizing min𝑖∈𝑉 𝜋𝑖.
+This maximin variant is NP-hard, and even a constant-factor
+approximation would imply P = NP [18], in stark contrast to the
+greedy(1− 1/𝑒)-approximation for the standard objective [ 30].
+However, Fish et al. show that a heuristic approach (Myopic; see
+Section 3.1) optimizes the objective well in practice. Indeed, this
+approach even performs well when evaluated via the classic influ-
+ence maximization objective, which it does not directly optimize.
+Unfortunately, this heuristic relies upon repeated Monte Carlo
+simulations of the activation probabilities 𝜋𝑖, which are a severe
+computational bottleneck and thereby constrain the scalability of
+the method; see Figure 1. Additionally, the method has only been
+evaluated on a small corpus of six networks.
+We are thus motivated to (a) introduce new algorithms which
+alleviate or completely avoid the bottleneck imposed by probability
+estimation; (b) compare the performance of our methods against
+that of Myopic in a principled manner,; and (c) expand the num-
+ber and diversity of networks on which the Maximin Influence
+Maximization problem has been studied.
+1.1 Related Work and Preliminaries
+Fairness in ML and Social Networks. Fairness in machine learning is
+a well-studied area, and includes notions of fairness based both on
+individual characteristics and on group demographics [16, 17, 26]
+arXiv:2409.03127v2  [cs.SI]  19 Feb 2025
+--- PAGE 2 ---
+5001000200040007500
+number of nodes, n
+0.1
+1
+10
+100
+1000
+10000
+100000runtime (milliseconds)
+Random
+Myopic*
+Naive Myopic*
+Gonzalesz
+Figure 1: Algorithm runtime to select 10 new seeds vs.
+network size for algorithms in [18], averaged over 10 runs
+on an introduced large set of networks (see Section 2.1).
+Algorithms requiring a Monte Carlo simulation ( ProbEst) to
+select seeds are denoted by a ∗.
+(for surveys, see [10, 37]). Recently, questions of fairness of infor-
+mation access of individuals and demographic groups in a network
+have come to the fore [1, 18, 32, 43–45, 48]. A significant body of
+work focuses on the probability that an individual receives informa-
+tion that spreads through a network. This includes studies of seed-
+ing information at nodes to improve individual [18] or group [44, 48]
+access; as well as interventions to add edges [4–6] under varying
+notions of fairness. Other work considers notions of group fairness
+based on the network structure [ 3, 29, 32]. Saxena, Fletcher, and
+Pechenizkiy provide a recent survey of such work [42]. Fair cluster-
+ing of individuals has also received significant attention, e.g., [13].
+Independent Cascade. Considerations about the access of individ-
+uals to resources in a network build on structural concerns about
+social networks pioneered by Granovetter [24]. Necessary in any
+such study is a clear model for the dynamics of information propa-
+gation. Numerous models exist, notably including the independent
+cascade, generalized independent cascade, and linear threshold
+models [22, 23, 30]. A standard choice, also adopted in this paper,
+is the independent cascade, which can be defined via an iterative
+spreading process. At each step𝑖, some subset𝑆𝑖 of nodes is acti-
+vated, beginning with an initial seed set𝑆 =𝑆0. In round𝑖+ 1, each
+edge𝑢𝑣 with𝑢∈ 𝑆𝑖,𝑣 ∉ —
+𝑗≤𝑖𝑆𝑗 activates𝑣 independently with
+probability𝛼. The process stops after the first round𝑖 in which no
+nodes are activated, i.e.,𝑆𝑖 =∅, and a node𝑣 is said to be activated
+by the cascade if it is activated in any round, i.e.,𝑣∈ —𝑆𝑖.
+Probability Estimation. Important in any analysis of independent
+cascades is the ability to measure the probability 𝜋𝑖 with which
+node𝑖 is activated. Unfortunately, exact computation of𝜋𝑖 is #P-
+hard [11]. The standard approach is to estimate these values via
+reverse influence sampling (RIS) [8, 47], which may also be thought
+of as performing a series of Monte Carlo simulations of the cascade
+process. Theoretical bounds on the number of simulations needed
+to satisfy a given error tolerance 𝜀 have a quadratic dependence
+on𝜀 in addition to quasilinear dependence on network size [ 47],
+and so in practice it is common to fix a reasonable number 𝑅 of
+simulations, e.g., 𝑅 = 1000. Algorithms for influence maximiza-
+tion and related problems then invoke a linear-time (regarding
+𝑅 as a constant) subroutine, referred to here as ProbEst, to pro-
+vide estimated𝜋𝑖 values. In practice, however, algorithms requiring
+such a subroutine can be orders of magnitude slower than those
+avoiding probability estimation altogether; we again refer to Fig-
+ure 1. In the influence maximization literature, much effort has
+been expended to lessen the complexity of ProbEst while retain-
+ing quality guarantees, e.g., [27, 34, 46], as well as to empirically
+compare various strategies [35]. In this work, our approach is to de-
+velop methods which avoid RIS entirely and evaluate the resulting
+solution quality via empirical comparison against the state-of-the-
+art. A purely heuristic approach, while difficult to accept for the
+classic influence maximization problem, is palatable in our setting
+because strong inapproximability bounds are known for Maximin
+Influence Maximization even in the presence of an oracle which
+perfectly computes the𝜋𝑖 values [18].
+1.2 Summary of Contributions
+Network Corpus. In Section 2.1, we introduce a large and struc-
+turally diverse corpus of174 networks on which to benchmark both
+our algorithms and the state-of-the-art. These networks are drawn
+from six domains: biological, social, economic, technological, trans-
+portation, and informational. Though our primary interest is in
+social networks, building a corpus from multiple domains enhances
+the structural diversity of our benchmark set; see the discussion
+in Section 2.1. Where relevant, we report results by domain.
+Spreadability. When evaluating algorithms in the presence of
+an independent cascade, it is necessary to choose a value for the
+parameter𝛼 which governs the probability of information trans-
+mission along edges. It is common in the literature to choose sev-
+eral values, under the assumption that small values fundamentally
+represent “low” information spread while large values represent
+“high” spread. However, this qualitative assessment of a particular
+𝛼 value is not consistent across networks, due to the varying under-
+lying combinatorial structure. We introduce spreadability, which
+enforces mathematical rigor in the assessment of a particular 𝛼
+value as “low”- or “high”-spreading for a given network. We use
+this framework to select appropriate𝛼 values for each network in
+our corpus, ensuring that we can measure algorithm performance
+under multiple distinct regimes of information spread.
+Performance Metric. Even with a fixed𝛼 value and a single net-
+work, it is non-trivial to compare the performance of algorithms.
+Among other factors, this is because we must account for varying
+choices of budget𝑘, random number generator seeding, and the
+impracticality of precisely measuring the problem objective. We
+introduce a performance metric which incorporates all of these
+factors, and allows us to evaluate the performance of an algorithm
+via a single number𝛽. Intuitively,𝛽 indicates the marginal improve-
+ment in the problem objective that we can expect if we use a given
+algorithm to add an additional information seed. We defer a more
+formal description to Section 2.3.
+Algorithms. In Section 3, we introduce10 new algorithms for the
+Maximin Influence Maximization problem, which we partition
+into three categories. The first two replace the Monte Carlo simula-
+tions used by the state-of-the-art to estimate activation probabilities
+with heuristics based on breadth-first search and personalized page
+rank. The complexity of our subroutines is similar to the Monte
+Carlo approach, but the hidden constants are vastly improved, and
+2
+--- PAGE 3 ---
+103 104 105
+number of nodes, n
+101
+102
+average degree, 
+Transportation
+T echnological
+Biological
+Social
+Economic
+Informational
+d
+Figure 2: Average degree of a network as a function of
+network size (number of nodes) for the corpus of 174
+networks from 6 distinct domains used in our study.
+this is reflected in improved running times. The third category of
+algorithms eliminates probability estimation entirely, instead using
+topological features of the network to inform seed selection.
+Evaluation, Meta-Learning, and Scalability. In Section 4, we con-
+duct a comprehensive evaluation of our methods, together with a
+comparison against the state-of-the-art (Myopic [18]). In Section 4.1,
+we show that on most networks at least one of our algorithms is
+nearly as effective as or even more effective than Myopic. Mean-
+while, our algorithms are much faster, improving on the running
+time of Myopic by 1-4 orders of magnitude; see Section 4.2. We build
+on these insights by introducing a meta-learner (see Section 4.3),
+which uses structural features of a network to predict which of our
+algorithms will be most effective on that network. This approach
+allows us to recover roughly 80% of the performance of Myopic
+while reducing running time by factors of about 75− 130. Finally,
+in Section 4.4 we show that these improvements in running time
+persist even on several much larger networks.
+2 NETWORK CORPUS AND EV ALUATION
+METHODS
+2.1 Network Corpus
+In order to investigate the effects of network structure on algorithm
+performance, we construct a corpus of 174 networks from six do-
+mains: biological (34), social (44), economic (43), technological (32),
+transportation (17), and informational (4). We include non-social
+networks in our study in order to more fully characterize the be-
+havior of algorithms on structurally diverse real-world networks.
+When relevant, we report our results by domain, so that social and
+non-social networks can be contrasted. An overview of the corpus
+is presented in Figure 2, with summary statistics in Table S1.
+Networks were curated from the Index of Complex Networks [14],
+a large-scale index of research-quality networks spanning all do-
+mains of science, as well as the Netzschleuder network catalogue
+and repository [36] and the corpus of Ghasemian, Hosseinmardi,
+and Clauset [21]. All networks included in our corpus are simple
+graphs, meaning their edges are undirected, unweighted, and there
+are no self-loops. Further, they are unipartite, i.e., they only have
+one type of node.
+Past work on such corpora indicates that domains (and even sub-
+domains, e.g., online social networks vs. offline social networks) are
+0.00 0.16 0.39 0.67 1.00
+activation probability, 
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+spreadability, |T|
+n
+spreadability
+low spreading
+med. spreading
+high spreading
+Figure 3: Spreadability on a network is quantified by the
+average fraction of a network’s nodes ⟨|𝑇|⟩/𝑛 in a tree𝑇
+grown through an independent cascade from a random
+initial seed for a given 𝛼. We define ‘low’, ‘medium’, and
+‘high’ spreadability as the 𝛼 that activates, on average, 20%,
+50%, and 80% of the network, respectively.
+highly distinguishable based on their structure alone [28]. Hence,
+a specific effort was made to (i) balance the classes, so that no do-
+main was more than 25% of the corpus, (ii) avoid over-representing
+networks from particular sources (e.g., Twitter follower networks),
+and (iii) ensure that the minimum network size was large enough
+to provide good results for information spreading tasks (minimum
+number of nodes𝑛min = 500). These choices improve the breadth
+and variety of network structure represented in the corpus, and its
+utility in the analyses of this study.
+2.2 Spreadability
+Background. In our work, we leverage the independent cascade
+model [30] to study the spread of information in networks and
+estimate𝜋𝑖. Given a network𝐺 and a set of activated nodes𝑄⊆𝑉 ,
+we grow a forest on 𝐺 under the independent cascade model by
+flipping a coin for each edge 𝑒𝑖𝑗 , where𝑖∈ 𝑉\𝑄, 𝑗∈ 𝑄, exactly
+once, so that 𝑖 is added to 𝑄 on a successful flip. Each edge 𝑒𝑖𝑗
+is considered as a transmission path at most once, and we define
+the probability of successful transmission to be 𝛼. We note that
+mathematically, it is equivalent to conceptualize the independent
+cascade as follows: delete every edge in the graph independently
+with probability(1−𝛼); the set𝑄 of activated nodes is exactly the
+set of nodes that remain reachable from the seed set 𝑆. As noted
+earlier, computing the exact probability of activation for a node𝑖,
+denoted𝜋𝑖, is #P-hard [11]. As such, we adopt the standard Monte
+Carlo simulation approach, but return later to consider practical
+consequences of this choice.
+Briefly, using ProbEst, given transmission probability𝛼, num-
+ber of simulation rounds 𝑅, and a seed set 𝑆, we estimate 𝜋𝑖 for
+every𝑖∈𝑉 using𝑅 independent cascades originating from𝑆 [18].
+The worst-case time complexity of ProbEst isO(𝑅(|𝑆|+ 2𝑚)) [18],
+where𝑚 is the number of edges in 𝐺. In practice, the computa-
+tional cost of ProbEst increases both as the seed set grows and as
+𝛼 increases, because both changes tend to increase the size of the
+induced information cascades. Past work used𝑅 = 1000 as a balance
+between statistical accuracy for𝜋𝑖 and computational cost, and we
+follow this precedent [18]. Here, ProbEst is used as a subroutine
+3
+--- PAGE 4 ---
+z
+Figure 4: Minimum access probability 𝜋min vs. seed set size 𝑘,
+with a best fit line ( Myopic ˆ𝛽 = 0.039), averaged over 20 runs,
+evaluated on a large economic network (𝑛 = 2113 nodes,
+𝑚 = 57927 edges), with𝛼 = 0.4 and a budget of 𝑘 = 10 seeds,
+plus one random initial seed.
+in some algorithms, as well as to evaluate the performance of algo-
+rithms by estimating the achieved minimum activation probability
+of a computed seed set.
+Selecting𝛼 values. Prior work evaluated algorithm performance
+using transmission probabilities𝛼∈{ 0.3, 0.4, 0.5} [18]. However,
+the resulting information cascades, and hence the associated access
+probabilities, are not a simple function of𝛼; they instead also depend
+on the network’s structure. For example, denser, more connected
+networks contain many more paths by which information can
+spread than do sparse networks. Hence the same 𝛼 will tend to
+produce larger cascades on the former, and smaller cascades on
+the latter. To control for these structure-induced differences in
+information cascades, we introduce the concept of spreadability,
+which jointly accounts for the impact of network structure and
+transmission rate𝛼 on the sizes of information cascades.
+We can construct a fine-grained spreadability function that re-
+lates a particular choice of𝛼 to the fraction of a network activated
+under the independent cascade model from a uniformly random
+initial seed. For a given 𝛼, the spreadability 𝑓(𝛼) on a particular
+network the fraction of nodes that are activated from a uniformly
+random initial seed, averaged over 𝑅 trials. This calculation pro-
+duces a monotonically increasing curve, as seen in Figure 3. We
+find that computing spreadability for each𝛼∈{ 0.01, 0.02,... 0.99}
+provides ample resolution to choose𝛼 close to target spreadabili-
+ties of 0.2, 0.5, 0.8 (which we refer to as “low, ” “medium, ” and “high”
+spreadabilities respectively). We set𝑅 = 1000, as the spreadability
+curve tends to stabilize near this value and we get diminishing
+returns for larger𝑅.
+2.3 New Metric for Algorithm Evaluation
+As discussed in Section 1.2, it is not straightforward to compare
+the performance of algorithms, even with a fixed network and𝛼
+value. There are several reasons for this. First, we do not want to
+make strong assumptions about the “most useful” value for the
+parameter𝑘 (the number of seeds to be added), and it is possible
+that algorithmA obtains a better objective score (the minimum
+activation probability𝜋min) than algorithmA′ for one value of𝑘,
+but not for another. Moreover, many algorithms (in particular those
+0.25
+0.5
+0.25
+0.5
+0.5
+0.75
+1
+1
+1
+10.11
+0.22
+0.43
+0.56
+0.56
+0.11
+0.22
+0.25
+Figure 5: Illustrations of two runs of Myopic for different
+initial seeds (red), with new selected seeds (yellow), and
+fixed𝛼 = 0.5. Numbers indicate 𝜋 for each node after the
+new seed is selected. Initialization significantly affects the
+performance of Myopic.
+using ProbEst) have some randomness. Finally, even our analysis
+of the quality of a solution is inexact; recall that exact computation
+of the𝜋min achieved by a seed set𝑆 is #P-hard [11]. Thus, our ability
+to compare two solutions is limited by the precision of ProbEst.
+We overcome these challenges by introducing a metric𝛽, which
+intuitively measures the marginal gain in the problem objective
+(the minimum activation probability 𝜋min) which we can expect
+when asking an algorithm to add one additional seed. Formally, for
+a given algorithmA, network𝐺, independent cascade parameter
+𝛼, and budget𝑘, we runA on(𝐺,𝛼,𝑘) and record a value𝜋min(𝑘)
+indicating the achieved objective score. We repeat for each 𝑘 ∈
+{1, 2,..., 10}, computing the points(𝑘,𝜋 min(𝑘))∈ N×[ 0, 1]. We
+then record the slope𝛽1 of the line of best fit for these points. We
+repeat the entire process multiple (generally 20) times, producing
+slopes𝛽1,𝛽 2,... . The metric𝛽 is the mean of these values, i.e., the
+average slope of the line of best fit; see Figure 4. Henceforth, when
+comparing the performance of algorithms, we do so via the metric𝛽.
+3 ALGORITHMS FOR FAIR INFORMATION
+ACCESS
+3.1 Algorithms from Prior Work
+Four previously introduced heuristics for choosing seed nodes to
+maximize𝜋min are Greedy, Myopic, Naive Myopic and Gonzalez,
+along with Random as a baseline for comparison [18]. Random selects
+𝑘 seeds by uniformly sampling nodes from the network. Given a
+partial seed set, Gonzalez selects as the next seed the node that
+is the furthest (in the shortest-path metric) from all nodes in the
+current set [18]. The Greedy algorithm iteratively selects a new seed
+by choosing the node with the highest marginal gain relative to the
+current seed set according to ProbEst. Due to its immensely high
+computational cost, Greedy is not practical for most networks [18],
+and is not used in our study.
+In contrast, Myopic uses ProbEst with the current seed set, and
+selects as the next seed the node with the lowest𝜋𝑖. Naive Myopic
+is similar to Myopic, but only runs ProbEst once, at initialization,
+and then selects as the seed set the 𝑘 nodes with the lowest 𝜋𝑖
+values. In past work, on a small set of networks, Myopic was found
+to perform best. However, because Myopic depends on ProbEst,
+it is computationally expensive, which limits its applicability to
+large networks. In practice, Myopic is always the second slowest
+algorithm, after Greedy [18].
+4
+--- PAGE 5 ---
+Biological Social Economic T echno. Transp. Info.
+Gonzalez
+Figure 6: Mean performance of the intervention algorithms on each domain in the corpus under medium spreadability. Each
+algorithm’s performance is averaged over a given domain, 20 runs per network.
+Algorithm Initialization. Myopic, Naive Myopic , and Gonzalez
+all start with an initial seed. Past work chose this initial seed to be
+the highest degree node. Our initial experiments indicate that this
+choice confers a substantial advantage to these methods (Figure 5),
+and that some of the previous positive results are thus attributable
+to this initial seed choice rather than to the algorithms’ subsequent
+choices. To mitigate this bias we instead initialize all heuristics with
+a seed set composed of a single uniformly randomly selected initial
+seed. Moreover, for each evaluation round on a particular network,
+we initialize all algorithms to use the same random seed, which
+further controls for the effects of different initial seed choices. This
+initial seed choice is not counted against the budget𝑘 (Figure 4).
+3.2 New Fast Algorithms
+In addition to the four heuristics from prior work, here we introduce
+10 new heuristics to maximize the minimum𝜋𝑖 on a budget. These
+heuristics are designed to be computationally lightweight, scaling
+to far larger networks, while also matching or exceeding the per-
+formance of Myopic on the corpus. We group the new algorithms
+into three families: BFS-based, PPR-based and Topology-based.
+BFS-based: Myopic BFS and Naive Myopic BFS. In the two BFS-
+based heuristics, Myopic BFS and Naive Myopic BFS , we swap
+the ProbEst component of Myopic and Naive Myopic with a sim-
+ple breadth-first search to estimate 𝜋𝑖. The breadth-first search
+component is initialized with a random seed𝑘0, and transmission
+probability𝛼. It proceeds to “peel” the network, starting at𝑘0, in
+breadth-first fashion, estimating𝜋𝑖 for each node as the probability
+that𝑖 receives a transmission from𝑘0 through any nodes it connects
+to in the previous BFS layer, as well as through nodes it is connected
+to in its own layer. All subsequent iterations update existing𝜋𝑖 esti-
+mates during the breadth-first traversal from new candidate seeds.
+While this approach does not exactly measure 𝜋𝑖, it is much
+faster than ProbEst, takingO(𝑛·⟨𝑘⟩) per iteration, because for
+most networks, including those in our corpus, the mean degree
+⟨𝑘⟩≪ 1000 (Figure 2). The key design principle of this algorithm
+is to capture complex network structures that Gonzalez could not
+account for. In Figure 4, we find that Myopic BFS almost matches
+Myopic’s performance in situations where Gonzalez lags behind.
+PPR-based: Myopic PPR and Naive Myopic PPR. In the PPR-based
+heuristics, Myopic PPR and Naive Myopic PPR , we use Person-
+alized PageRank (PPR) to estimate 𝜋𝑖 instead of ProbEst or BFS.
+Personalized PageRank (implemented withnetworkx [25]) performs
+a random walk that probabilistically restarts from nodes in the seed
+set [9]. The ranking produced by PPR is not a direct estimate of𝜋𝑖;
+we treat the PPR values as being correlated, such that a lower PPR
+score is a proxy for a lower𝜋𝑖 value.
+Topology-based: LeastCentral and MinDegree. These heuristics
+are based on the intuition that nodes with low𝜋𝑖 values have distinc-
+tive structural positions or patterns of connectivity. LeastCentral
+selects the non-seed node 𝑖 with the lowest closeness centrality
+𝑐𝑖 as the next seed. Similarly, LeastCentral_n selects the lowest
+centrality node𝑖’s highest degree neighbor as the next seed. Here,
+the closeness centrality of a node 𝑖 is the inverse of the average
+shortest path length from𝑖 to all other reachable nodes in the same
+connected component [19, 33]. Lower closeness centrality implies
+the node is less reachable by the rest of the network, and therefore
+is expected to have lower𝜋𝑖.
+The four remaining topology-based heuristics exploit a net-
+work’s degree structure to make decisions, based on the observation
+that in practice Myopic tends to select nodes with low degree as
+seeds. The first two heuristics take a non-seed node with the lowest
+degree, breaking ties by choosing the node with the lowest har-
+monic centrality [7, 33] among same-degree nodes. In the case of
+MinDegree_hc, it chooses that node itself as the next seed, while
+MinDegree_hcn chooses the highest-degree neighbor of that node.
+The two remaining variations replace harmonic centrality in the
+aforementioned logic with the neighbor degree, i.e. breaking ties
+by choosing the node with the highest neighbor degree (sum of de-
+grees across neighbors). These heuristics are called MinDegree_nd
+and MinDegree_ndn, respectively.
+4 EXPERIMENTAL RESULTS
+4.1 Performance of Algorithms on the Corpus
+We evaluate and compare the performance of 14 algorithms in
+total (10 new algorithms and 4 from prior work), applied to all
+174 networks in the corpus. Our code and data are available at
+5
+--- PAGE 6 ---
+Biological Social Economic T echno. Transp. Info.
+Gonzalez
+Figure 7: Performance of intervention algorithms on the network corpus, relative to Myopic and sorted in ascending order by
+network size within each domain. Under medium spreadability, 24% of networks have no algorithm better than or within 80%
+of Myopic’s performance. “Equivalent” is defined as within one standard error of 𝛽 for Myopic; typically about 0.001.
+https://github.com/TheoryInPractice/FairInfoAccessHeuristics. We
+are interested in algorithms that operate well on a tight budget
+and so let𝑘∈{ 1, 2,..., 10} seed nodes. For each spreadability level
+(low, medium, high), we produce a 10× 14× 174 matrix, where
+each entry is the 𝛽 performance of an algorithm after adding 𝑘
+seeds in a network, averaged over20 runs. We focus on the medium
+spreadability regime here, and include results for low and high
+spreadability in Appendix C. Figure 6 displays the mean perfor-
+mance of each algorithm on networks by domain under medium
+spreadability (see Figure S1 for low and high spreadability results).
+Across domains, Myopic produces the best average performance.
+To further examine the results, we sort within each domain
+by network size in ascending order, and then score algorithms as
+better than, “equivalent” to (within one std. err.), within 80% of, or
+worse than Myopic (see Figure 7; low and high spreadability results
+in Figure S2). In this way, we can assess whether the better average
+performance of Myopic applies to individual networks compared
+to other algorithms. This experiment reveals that Myopic is not
+universally the best algorithm for all networks in any spreadability
+setting; on many individual networks other algorithms perform
+equivalently or better. In the medium spreadability setting, for only
+24% of networks is there no algorithm that performs at least 80% as
+well as Myopic (Figure 7).
+This variability in performance across networks suggests that
+network structure plays a critical role in governing the relative
+performance of different algorithms. Figure 8 plots the instances
+for which each algorithm was the best performing algorithm on a
+network against that network’s mean degree⟨𝑘⟩. Myopic tends to
+perform better on networks with lower average degree, although it
+also performs well on many networks with larger mean degree. In
+practice, we find that the final seed set produced byMyopic is often
+composed primarily of low-degree nodes located in a network’s
+periphery, and these nodes may be too far removed from other
+disadvantaged nodes to meaningfully improve their𝜋𝑖 values.
+A second takeaway is that a few specific algorithms tend to per-
+form better than Myopic in certain settings (Figure 8), specifically
+MinDegree_hcn and Gonzalez. The performance ofMinDegree_hcn
+in particular tends to improve over Myopic with increasing aver-
+age degree, while Gonzalez does best in networks with very low
+mean degrees. Furthermore, we note that in Figure S1a, on average
+MinDegree_hcn outperforms Myopic in the economic domain, and
+from Table S1, we see that the economic domain has the highest
+mean degrees. The MinDegree_hcn algorithm selects as seeds the
+highest-degree neighbors of low-degree nodes. As result, new infor-
+mation cascades seeded at these nodes will tend to spread quickly
+to a number of disadvantaged nodes in the network.
+z
+Figure 8: Best-performing algorithm vs. mean degree of the
+network (medium spreadability), for all networks. Counts
+on the right show total circles per line, i.e., the number of
+times an algorithm was the best over the whole corpus.
+4.2 Algorithm Runtime
+We evaluate all algorithm runtimes on the corpus, selecting𝑘 = 10
+new seeds, averaged over 10 runs. For fair comparison, we run all
+algorithms on a single core of an AMD Ryzen 5900X, overclocked
+to 5.00Ghz, with 32GB RAM, and measure the runtime in millisec-
+onds. Two major performance bottlenecks are ProbEst, used by
+Myopic and Naive Myopic , and an All-Pairs-Shortest-Paths (APSP)
+computation, used by Gonzalez, LeastCentral, LeastCentral_n,
+MinDegree_hc, and MinDegree_hcn. Both ProbEst and APSP have
+efficient parallel implementations, but we restrict them to a single
+core to ensure fair comparison with other algorithms.
+6
+--- PAGE 7 ---
+5001000200040007500
+number of nodes, n
+0.1
+1
+10
+100
+1000
+10000
+100000runtime (milliseconds) Random
+Myopic*
+Naive Myopic*
+Gonzales
+LeastCentral
+LeastCentral_n
+Myopic BFS
+Naive Myopic BFS
+Myopic PPR
+Naive Myopic PPR
+MinDegree_hc
+MinDegree_hcn
+MinDegree_nd
+MinDegree_ndn
+z
+Figure 9: Runtime of old and new algorithms across the
+network corpus with𝑘 = 10 seeds averaged over 10 runs,
+showing a substantial advantage in running time for the
+new algorithms. Note: algorithms with * require ProbEst.
+All of the new algorithms are substantially faster than Myopic
+and Naive Myopic (Figure 9). Because they only require sorting
+two lists, MinDegree_ndn and MinDegree_nd are the most efficient,
+improving running times over ProbEst-based algorithms by a fac-
+tor of 1000-10000x, depending on the size of the network (Figure 9).
+BFS-based algorithms are marginally slower than these fastest algo-
+rithms, and algorithms that use an All-Pairs-Shortest-Paths (APSP)
+calculation fall between the ProbEst and BFS algorithm groups. As
+expected from the asymptotics, BFS algorithms tend to scale more
+slowly (in terms of runtime) with network size than do ProbEst
+algorithms, while APSP algorithms scale more quickly (Figure 9).
+The low upfront cost of APSP-based algorithms makes them far
+faster than ProbEst-based algorithms in many practical settings,
+being 10-100x faster on networks with less than𝑛 = 106. However,
+the asymptotic cost of APSP is cubic in the network size, implying
+that for sufficiently large networks, ProbEst will be faster. For our
+corpus, we estimate the crossover point when Myopic becomes
+more efficient than MinDegree_hc to occur between 1, 262, 000 and
+1, 515, 000 nodes (95% CI, from 1000 bootstraps). However, approxi-
+mation algorithms for APSP could potentially extend their practical
+efficiency much further.
+4.3 A Fast Meta-Learning Algorithm
+We can exploit the variability in algorithm performance, and the
+fact that even among non-Myopic algorithms no alternative is su-
+perior on all networks, by introducing a meta-learner algorithm
+that combines multiple scalable heuristics to approximate the state-
+of-the-art performance of the Myopic algorithm. We compare this
+algorithm to a fast ensemble algorithm that uses an oracle to make
+perfect predictions about which scalable algorithm is best to apply
+on a particular test network, thus providing an upper bound on the
+meta-learner’s possible performance.
+The meta-learner algorithm leverages the scalability of non-
+ProbEst algorithms while retaining good overall performance un-
+der all spreadability regimes. The task is as follows: given a partic-
+ular network𝐺 and knowledge of the information’s spreadability
+Figure 10: Performance difference vs. speedup for the
+meta-learner algorithm under medium spreadability, with
+marginal histograms, averaged over 1000 runs. Extreme
+outliers have been removed for visualization purposes.
+Average performance difference relative to Myopic is
+−20.11%± 29.34 (mean± stddev), for an average speedup
+factor of 76.28± 64.07. For 34 of the networks (19.8%) the
+meta-learner strictly outperforms Myopic.
+(low, medium, or high), select the scalable algorithm with the best
+marginal benefit𝛽 for improving information access.
+As shown previously, many of the heuristics do not perform
+well, and so we begin by narrowing the set of available algorithms.
+For each of the three spreadability settings, we select the setX of
+five algorithms (excluding Myopic and Naive Myopic ) that maxi-
+mize the number of networks for which at least one among the set
+performs at least 80% as well as Myopic. This produces sets
+• Xhigh ={Gonzales, LeastCentral, Myopic BFS,
+Naive Myopic BFS , MinDegree_hc}
+• Xmedium ={Gonzales, Myopic BFS, Myopic PPR,
+MinDegree_hc, MinDegree_hcn}
+• Xlow ={Gonzalez, Myopic BFS, Myopic PPR,
+MinDegree_hcn, MinDegree_ndn}
+For the meta-learner algorithm, we then learn a 5-way random
+forest classifier to predict the best algorithm in X to apply to a
+given network, using nine of the network’s topological features as
+the feature set (Figure S5). We train and evaluate the meta-learner
+approach using an 80-20 train-test split among networks in the
+corpus, with meta-learner algorithm selection and model training
+both performed on the training set, and we report the mean perfor-
+mance over the test set. The meta-learner’s runtime is the runtime
+of the trained model and the single algorithm it selects.
+In the fast ensemble algorithm, for a given network in the corpus,
+the oracle runs all algorithms inX and evaluates the performance
+of each using ProbEst to calculate their respective 𝛽s, and then
+returns the single algorithm with the highest𝛽 for that network.
+In this way, the oracle acts like an optimal classifier over X (cf.
+the meta-learner algorithm). The runtime of the fast ensemble
+algorithm is simply that of the single algorithm it selects.
+Compared to Myopic, the meta-learner is dramatically more effi-
+cient, with an average runtime that is76.26±64.07 times faster under
+medium spreadability (Figure 10) and133.35± 79.32 times faster un-
+der high spreadability (Figure S7). Improvement in scalability comes
+7
+--- PAGE 8 ---
+with a modest cost to performance, such that the meta-learner pro-
+duces𝛽 values that are, on average,20.11%± 29.34 lower than those
+of Myopic under medium spreadability (with similar results for
+high); we note that the wide variance in these numbers reflects the
+broad range of difficulty across networks in the corpus. In contrast,
+the fast ensemble algorithm’s performance is only 9.34%± 28.34
+lower for medium spreadability (similar results for high), indicat-
+ing both room for improvement by the meta-learner with a better
+feature set as well as an upper limit to that improvement with the
+current scalable algorithms. We note, however, that lower perfor-
+mance is not universal: for 34 and 22 networks (20% and 12.8%), the
+meta-learner outperforms Myopic on medium and high spreadabil-
+ity, respectively (Figs. 10 and S7). Under low spreadability, the fast
+meta-learner’s average performance generally exceeds Myopic be-
+cause of the inherent precision limitation ofProbEst in this setting.
+4.4 Scaling to Larger Networks
+In this section, we verify that our methods remain much faster than
+Myopic even on much larger networks. We consider two networks,
+Email Network (EU Research Institution) (which we shorten to
+Email (EU)) and Google+ (2013). These have∼ 34 thousand and∼ 87
+thousand nodes, respectively; other summary statistics are reported
+in Table S2. On these networks, we evaluate Myopic against the
+five algorithms inXhigh, as defined in Section 4.3: Gonzales, Least
+Central, Myopic BFS , Naive Myopic , BFS, and MinDegree_hc.
+We use high-spreadability 𝛼 values. We ran these experiments
+on identical hardware equipped with 40 physical cores (Intel(R)
+Xeon(R) Gold 6230 CPU @ 2.10 GHz) and 19100 MB of RAM. As
+with the smaller networks, the budgets tested are𝑘∈{ 1, 2,..., 10}.
+We change several parameters from our previous runs so that our
+experiments are better suited to the size of these networks. After
+initial experiments with the number of Monte Carlo simulations
+in ProbEst set to𝑅 = 1000, it became clear that 1000 simulation
+rounds was not enough for networks with tens of thousands of
+nodes, as some of our evaluations produced a negative𝛽. With ex-
+act probability computations,𝜋min would monotonically increase
+with each seed added, so𝛽 < 0 indicates highly inaccurate estima-
+tions. Thus, we increase the number of Monte Carlo simulations
+to 𝑅 = 10000 in order to better estimate 𝜋𝑖 for large networks.
+However, due to the increase in simulation rounds and network
+size, running ProbEst to evaluate the algorithms’ performances is
+extremely expensive. To balance between computation time and
+a thorough analysis, we run only 3 trials of our algorithms with
+high-spreadability𝛼 values. We also use only 1000 simulations
+when executing the spreadability computations (recall Section 2.2)
+to select the appropriate𝛼. We note that calculating the target𝛼
+would have required approximately 30 days of compute time for
+Google+ (2013) with 𝑅 = 10000. After using 1000 simulations to
+complete the spreadability computations, we tested the selected
+𝛼 values with𝑅 = 10000, verifying that they activate on average
+78.9% and 79.4% of Email (EU) and Google+ (2013), respectively,
+which is quite close to the target activation percentage of 80%.
+As with the broader corpus, when evaluated on the two larger
+networks, the five representative algorithms from Xhigh are or-
+ders of magnitude faster than Myopic, with some of the algorithms
+maintaining seed choice quality comparable to Myopic. Indeed, the
+Figure 11: Runtime of Myopic and the algorithms ofXhigh on
+five social networks of various sizes under high
+spreadability: Norwegian Board of Directors (2006),
+Amherst41, ca-HepTh-snap, Email (EU), and Google + (2013).
+Numbers in the plot indicate how much slower Myopic is
+than the second-slowest algorithm for that network.
+slowest of the algorithms fromXhigh is 135 times faster than Myopic
+on Email (EU), and 96 times faster on Google+ (2013). These results
+(see Figure 11) indicate that the running time advantage of our meth-
+ods over Myopic is not diminished on networks much larger than
+those in the corpus of Section 2.1. Moreover, the performance loss of
+our methods (relative to Myopic) is similar (though slightly greater)
+to that observed for the larger corpus; see Figure S10 in Appendix D.
+5 DISCUSSION AND CONCLUSION
+We evaluate new and existing algorithms, and introduce a meta-
+learning method for choosing𝑘 seed nodes to maximize the mini-
+mum access probability𝜋𝑖 of a node in a network. The meta-learner
+achieves a large (75x) speedup over the existing state-of-the-art,
+with a modest decrease in performance over a large corpus of net-
+works. The previous Monte Carlo method for calculating a node’s
+information access has high computational costs that limit the ap-
+plicability of algorithms that rely on it, while the algorithms we
+introduced here scale-up to much larger networks.
+To evaluate the algorithms, we introduce a large cross-domain
+network corpus, and a new performance metric𝛽. We also introduce
+the concept of spreadability on a network to choose the independent
+cascade activation probability𝛼, accounting for the influence of a
+network’s structural features on information spread.
+Our findings have implications for the design of intervention
+strategies that aim to improve information access of the disad-
+vantaged individuals in a network. This work suggests that the
+structure of the network plays a significant role in the performance
+of the algorithms, with average degree being a particularly impor-
+tant factor. The introduction of an ensemble method based on fast
+algorithms that do not rely on Monte Carlo simulation also leaves
+open the incorporation of future lightweight algorithms.
+8
+--- PAGE 9 ---
+ACKNOWLEDGEMENTS
+The authors thank Daniel B. Larremore and Zachary Kilpatrick
+for helpful feedback, and they acknowledge the BioFrontiers IT
+group at the University of Colorado Boulder for their support with
+data storage infrastructure, data management services, and High
+Performance Computing resources.
+FUNDING
+This work was supported in part by National Science Foundation
+Awards IIS 1956183 (DRW, CJW, AC), IIS 1956286 (ACr, MW, FS,
+BS), and IIS 1955321 (SF).
+REFERENCES
+[1] Junaid Ali, Mahmoudreza Babaei, Abhijnan Chakraborty, Baharan Mirza-
+soleiman, Krishna P Gummadi, and Adish Singla. On the fairness of time-critical
+influence maximization in social networks. IEEE Transactions on Knowledge and
+Data Engineering, 35(3):2875–2886, 2021.
+[2] Abhijit Banerjee, Arun G Chandrasekhar, Esther Duflo, and Matthew O Jackson.
+The diffusion of microfinance. Science, 341(6144):1236498, 2013.
+[3] Ashkan Bashardoust, Hannah C Beilinson, Sorelle A Friedler, Jiajie Ma, Jade
+Rousseau, Carlos E Scheidegger, Blair D Sullivan, Nasanbayar Ulzii-Orshikh,
+and Suresh Venkatasubramanian. Information access representations and social
+capital in networks. arXiv preprint arXiv:2010.12611, 2020.
+[4] Ashkan Bashardoust, Sorelle Friedler, Carlos Scheidegger, Blair D Sullivan, and
+Suresh Venkatasubramanian. Reducing access disparities in networks using
+edge augmentation. In Proceedings of the 2023 ACM Conference on Fairness,
+Accountability, and Transparency, pages 1635–1651, 2023.
+[5] Ruben Becker, Gianlorenzo D’Angelo, and Sajjad Ghobadi. Improving fairness
+in information exposure by adding links. In Proceedings of the AAAI Conference
+on Artificial Intelligence, volume 37, pages 14119–14126, 2023.
+[6] Aditya Bhaskara, Alex Crane, Md Mumtahin Habib Ullah Mazumder, Blair D
+Sullivan, and Prasanth Yalamanchili. Optimizing information access in networks
+via edge augmentation. arXiv preprint arXiv:2407.02624, 2024.
+[7] Paolo Boldi and Sebastiano Vigna. Axioms for centrality, 2013.
+[8] Christian Borgs, Michael Brautbar, Jennifer Chayes, and Brendan Lucier. Maxi-
+mizing social influence in nearly optimal time. In Proceedings of the twenty-fifth
+annual ACM-SIAM symposium on Discrete algorithms, pages 946–957. SIAM, 2014.
+[9] S. Brin and L. Page. The anatomy of a large-scale hypertextual web search engine.
+Comput. Netw., 30:107–117, 1998.
+[10] Simon Caton and Christian Haas. Fairness in machine learning: A survey. ACM
+Computing Surveys, 56(7):1–38, 2024.
+[11] Wei Chen, Chi Wang, and Yajun Wang. Scalable influence maximization for
+prevalent viral marketing in large-scale social networks. In Proceedings of the
+16th ACM SIGKDD international conference on Knowledge discovery and data
+mining, pages 1029–1038, 2010.
+[12] Cecilia Cheng, Hsin-Yi Wang, Leif Sigerson, and Chor-Lam Chau. Do the socially
+rich get richer? a nuanced perspective on social network site use and online
+social capital accrual. Psychological Bulletin, 145(7):734–764, 2019.
+[13] Flavio Chierichetti, Ravi Kumar, Silvio Lattanzi, and Sergei Vassilvitskii. Fair
+clustering through fairlets. In Advances in Neural Information Processing Systems
+30: Annual Conference on Neural Information Processing Systems 2017, December
+4-9, 2017, Long Beach, CA, USA , pages 5029–5037, 2017.
+[14] Aaron Clauset, Ellen Tucker, and Matthias Sainz. The colorado index of complex
+networks. https://icon.colorado.edu/, 2016.
+[15] Pedro Domingos and Matt Richardson. Mining the network value of customers.
+In Proceedings of the seventh ACM SIGKDD international conference on Knowledge
+discovery and data mining , pages 57–66, 2001.
+[16] Cynthia Dwork, Moritz Hardt, Toniann Pitassi, Omer Reingold, and Richard
+Zemel. Fairness through awareness. In Proceedings of the 3rd innovations in
+theoretical computer science conference , pages 214–226, 2012.
+[17] Michael Feldman, Sorelle A Friedler, John Moeller, Carlos Scheidegger, and Suresh
+Venkatasubramanian. Certifying and removing disparate impact. In proceedings
+of the 21th ACM SIGKDD international conference on knowledge discovery and
+data mining, pages 259–268, 2015.
+[18] Benjamin Fish, Ashkan Bashardoust, Danah Boyd, Sorelle Friedler, Carlos Schei-
+degger, and Suresh Venkatasubramanian. Gaps in information access in social
+networks? In The World Wide Web Conference, WWW ’19. ACM, May 2019.
+[19] Linton C. Freeman. Centrality in social networks conceptual clarification. Social
+Networks, 1(3):215–239, 1978.
+[20] Joshua P. Garoon and Patrick S. Duggan. Discourses of disease, discourses of
+disadvantage: A critical analysis of national pandemic influenza preparedness
+plans. Social Science & Medicine , 67(7):1133–1142, 2008.
+[21] Amir Ghasemian, Homa Hosseinmardi, and Aaron Clauset. Evaluating overfit
+and underfit in models of network community structure. IEEE Transactions on
+Knowledge and Data Engineering , 32:1722–1735, 2019.
+[22] Jacob Goldenberg, Barak Libai, and Eitan Muller. Talk of the network: A complex
+systems look at the underlying process of word-of-mouth. Marketing Letters,
+2001.
+[23] M. Granovetter. Threshold models of collective behavior. The American Journal
+of Sociology, 83(6):1420–1443, 1978.
+[24] Mark S. Granovetter. The strength of weak ties. American Journal of Sociology,
+78(6):1360–1380, 1973.
+[25] Aric A. Hagberg, Daniel A. Schult, and Pieter J. Swart. Exploring network
+structure, dynamics, and function using networkx. In Gaël Varoquaux, Travis
+Vaught, and Jarrod Millman, editors, Proceedings of the 7th Python in Science
+Conference, pages 11 – 15, Pasadena, CA USA, 2008.
+[26] Moritz Hardt, Eric Price, and Nati Srebro. Equality of opportunity in supervised
+learning. Advances in Neural Information Processing Systems , 30:3323 – 3331,
+2016.
+[27] Keke Huang, Sibo Wang, Glenn Bevilacqua, Xiaokui Xiao, and Laks VS Laksh-
+manan. Revisiting the stop-and-stare algorithms for influence maximization.
+Proceedings of the VLDB Endowment , 10(9):913–924, 2017.
+[28] K. Ikehara and A. Clauset. Characterizing the structural diversity of complex
+networks across domains, 2017.
+[29] Zeinab S Jalali, Qilan Chen, Shwetha M Srikanta, Weixiang Wang, Myunghwan
+Kim, Hema Raghavan, and Sucheta Soundarajan. Fairness of information flow in
+social networks. ACM Transactions on Knowledge Discovery from Data, 17(6):1–26,
+2023.
+[30] David Kempe, Jon Kleinberg, and Éva Tardos. Maximizing the spread of influence
+through a social network. In Proceedings of the Ninth ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining , KDD ’03, page 137–146.
+Association for Computing Machinery, 2003.
+[31] Jure Leskovec, Andreas Krause, Carlos Guestrin, Christos Faloutsos, Jeanne
+VanBriesen, and Natalie Glance. Cost-effective outbreak detection in networks.
+In Proceedings of the 13th ACM SIGKDD international conference on Knowledge
+discovery and data mining , pages 420–429, 2007.
+[32] Anay Mehrotra, Jeff Sachs, and L Elisa Celis. Revisiting group fairness metrics:
+The effect of networks. Proceedings of the ACM on Human-Computer Interaction ,
+6(CSCW2):1–29, 2022.
+[33] M. E. J. Newman. Networks. Oxford University Press, Oxford, UK, 2nd edition,
+2018.
+[34] Hung T Nguyen, My T Thai, and Thang N Dinh. Stop-and-stare: Optimal
+sampling algorithms for viral marketing in billion-scale networks. In Proceedings
+of the 2016 international conference on management of data , pages 695–710, 2016.
+[35] Naoto Ohsaka. The solution distribution of influence maximization: A high-level
+experimental study on three algorithmic approaches. In Proceedings of the 2020
+ACM SIGMOD international conference on management of data , pages 2151–2166,
+2020.
+[36] Tiago P. Peixoto. The netzschleuder network catalogue and repository. https:
+//doi.org/10.5281/zenodo.7839981, 2020.
+[37] Dana Pessach and Erez Shmueli. A review on fairness in machine learning. ACM
+Computing Surveys (CSUR), 55(3):1–44, 2022.
+[38] Pierre M. Picard and Yves Zenou. Urban spatial structure, employment and social
+ties. Journal of Urban Economics , 104:77–93, 2018.
+[39] John Rawls. A Theory of Justice . Harvard University Press, 2009.
+[40] Matthew Richardson and Pedro Domingos. Mining knowledge-sharing sites
+for viral marketing. In Proceedings of the eighth ACM SIGKDD international
+conference on Knowledge discovery and data mining , pages 61–70, 2002.
+[41] Everett M Rogers, Arvind Singhal, and Margaret M Quinlan. Diffusion of inno-
+vations. In An integrated approach to communication theory and research , pages
+432–448. Routledge, 2014.
+[42] Akrati Saxena, George Fletcher, and Mykola Pechenizkiy. Fairsna: Algorithmic
+fairness in social network analysis. ACM Computing Surveys, 56(8):1–45, 2024.
+[43] Ana-Andreea Stoica and Augustin Chaintreau. Fairness in social influence
+maximization. In Companion Proceedings of The 2019 World Wide Web Conference,
+pages 569–574, 2019.
+[44] Ana-Andreea Stoica, Jessy Xinyi Han, and Augustin Chaintreau. Seeding network
+influence in biased networks and the benefits of diversity. In Proceedings of The
+Web Conference 2020, pages 2089–2098, 2020.
+[45] Ana-Andreea Stoica, Christopher Riederer, and Augustin Chaintreau. Algorith-
+mic glass ceiling in social networks: The effects of social recommendations on
+network diversity. In Proceedings of the 2018 World Wide Web Conference , pages
+923–932, 2018.
+[46] Youze Tang, Yanchen Shi, and Xiaokui Xiao. Influence maximization in near-
+linear time: A martingale approach. In Proceedings of the 2015 ACM SIGMOD
+international conference on management of data , pages 1539–1554, 2015.
+[47] Youze Tang, Xiaokui Xiao, and Yanchen Shi. Influence maximization: Near-
+optimal time complexity meets practical efficiency. In Proceedings of the 2014
+ACM SIGMOD international conference on Management of data , pages 75–86,
+9
+--- PAGE 10 ---
+2014.
+[48] Alan Tsang, Bryan Wilder, Eric Rice, Milind Tambe, and Yair Zick. Group-fairness
+in influence maximization. In Proceedings of the Twenty-Eighth International
+Joint Conference on Artificial Intelligence, IJCAI 2019, Macao, China, August 10-16,
+2019, pages 5997–6005, 2019.
+[49] Gergely Tóth, Johannes Wachs, Riccardo Di Clemente, and Jari Saramäki. In-
+equality is rising where social network segregation interacts with urban topology.
+Nature Communications, 12(1):1143, 2021.
+[50] Dashun Wang and Brian Uzzi. Weak ties, failed tries, and success. Science,
+377(6612):1256–1258, 2022.
+[51] Amulya Yadav, Hau Chan, Albert Xin Jiang, Haifeng Xu, Eric Rice, and Milind
+Tambe. Using social networks to aid homeless shelters: Dynamic influence
+maximization under uncertainty. In AAMAS, volume 16, pages 740–748, 2016.
+10
+--- PAGE 11 ---
+A NETWORK CORPUS
+Summary statistics for the network corpus can be found in Table S1.
+B PSEUDOCODE FOR ALGORITHMS
+For completeness, here we provide pseudocode for all 10 new al-
+gorithms, along with high-level descriptions. We also describe the
+ensemble and meta-learner approaches.
+Algorithm 1: Myopic BFS
+Approximates𝜋𝑖 values by performing BFS traversal from the most
+recent seed and computing 𝜋𝑖 activation probabilities for every
+node in the network, taking into account only its “parents” and
+“neighbors. ” For a node𝑥 at distance𝑡 from the seed, a “parent” is
+any node at distance𝑡− 1 from the seed that shares an edge with
+𝑥, and a “neighbor” is any node at distance𝑡 that shares an edge
+with𝑥. When adding a new seed, update the old probabilities with
+a new BFS traversal.
+Algorithm 1: Myopic BFS
+Input : 𝐺 =(𝑉,𝐸),𝑠,𝛼 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+3 𝑄←𝑆[−1]
+// initialize queue with latest seed
+4 while|𝑄| < 0 do
+5 Perform BFS traversal and record distance𝑡 to𝑆[−1]
+for every node
+6 for𝑣∈𝑉 do
+7 Approximate access probability𝜋𝑖∀𝑣∈𝑉 // see
+the writeup earlier for more info
+// Choose the node with min. activation prob.
+8 𝑥 = argmin𝑣∈𝑉\𝑆 Prob(𝑣)
+9 𝑆 =𝑆∪{𝑥}
+10 return𝑆
+Algorithm 2: Naive Myopic BFS
+Approximates𝜋𝑖 values in the same way as Myopic BFS . Reuses
+the approximations from the first traversal when adding each sub-
+sequent seed.
+Algorithm 3: Myopic PPR
+Choose an initial seed node uniformly at random. Then, for each
+new seed, perform a pass of Personalized Page Rank, with per-
+sonalization parameter set to bias random walk restarts from the
+current seed set. Sort the nodes by PPR in ascending order, choose
+𝑠 lowest-scoring nodes as new seeds.
+Algorithm 4: Naive Myopic PPR
+Choose an initial seed node uniformly at random. Then, perform a
+pass of Personalized Page Rank, with personalization parameter set
+Algorithm 2: Naive Myopic BFS
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 𝑄←𝑆[−1]
+// initialize queue with first random seed
+3 while|𝑄| < 0 do
+4 Perform BFS traversal and record distance𝑡 to𝑆[−1] for
+every node
+5 for𝑣∈𝑉 do
+6 Approximate access probability𝜋𝑖∀𝑣∈𝑉 // see the
+writeup earlier for more info
+// Choose 𝑠 nodes with min. activation prob.
+7 while|𝑆|≤ 𝑠 do
+8 𝑥 = argmin𝑣∈𝑉\𝑆 Prob(𝑣)
+9 𝑆 =𝑆∪{𝑥}
+10 return𝑆
+Algorithm 3: Myopic PPR
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+3 𝑥 = argmin𝑣∈𝑉\𝑆 PPR(𝑣,𝑆)
+4 𝑆 =𝑆∪{𝑥}
+5 return𝑆
+to bias random walk restarts from the initial random seed. Sort the
+nodes by PPR in ascending order, choose𝑠 lowest-scoring nodes as
+new seeds.
+Algorithm 4: Naive Myopic PPR
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+// Sort the nodes by ascending PPR
+2 𝑣1,𝑣 2,...,𝑣 𝑛 = PPR(𝐺,𝑆)
+3 𝑆 =𝑆∪{𝑣1,𝑣 2,...𝑣 𝑠}
+4 return𝑆
+Algorithm 5: LeastCentral
+Choose an initial seed node uniformly at random. Then choose the
+node with the lowest closeness centrality as the new seed.
+11
+--- PAGE 12 ---
+net. count ⟨𝑛⟩ ⟨𝑚⟩ ⟨𝑘⟩ ⟨𝐶⟩ ⟨ℓmax⟩ ⟨𝜎2⟩
+full corpus 174 1495.42 26288.68 22.60 0.24 13.79 1997.12
+biological 34 927.50 2830.24 7.00 0.08 11.59 285.87
+social 44 1647.75 29055.57 28.11 0.42 11.02 1099.06
+economic 43 2367.40 71946.23 51.97 0.38 7.19 6647.82
+technological 32 843.13 1651.50 4.07 0.07 17.84 69.55
+transportation 17 1243.65 2148.53 3.80 0.10 35.76 37.79
+informational 4 1561.75 4124.25 6.41 0.11 8.00 174.06
+Table S1: Summary statistics of the network corpus used to evaluate algorithms for the Information Access Gap Minimization
+problem, showing the number of networks by scientific domain, along with the average number of nodes ⟨𝑛⟩, average number
+of edges⟨𝑚⟩, average degree⟨𝑘⟩, average clustering coefficient (transitivity)⟨𝐶⟩, average diameter⟨ℓmax⟩, and average variance
+of the degree distribution⟨𝜎2⟩ for networks in that domain.
+Algorithm 5: LeastCentral
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose node with min. Close. Centrality
+3 𝑥 = argmin𝑣∈𝑉\𝑆 CC(𝑣)
+4 𝑆 =𝑆∪{𝑥}
+5 return𝑆
+Algorithm 6: LeastCentral_n
+Choose an initial seed node uniformly at random. Then choose a
+node with the smallest closeness centrality and select that node’s
+highest-degree neighbor to be the next seed.
+Algorithm 6: LeastCentral_n
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose node with min. Close. Centrality
+3 𝑥 = argmin𝑣∈𝑉\𝑆 CC(𝑣)
+// Choose the highest degree neighbor.
+4 𝑦 = argmax𝑣∈𝑁(𝑥)𝑑(𝑣)
+5 𝑆 =𝑆∪{𝑦}
+6 return𝑆
+Algorithm 7: MinDegree_hc
+Choose an initial seed node uniformly at random. Then, identify all
+minimum degree nodes, and sort by harmonic centrality. Finally,
+choose the node with the lowest harmonic centrality as the new
+seed.
+Algorithm 7: MinDegree_hc
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose nodes with min. degree.
+3 𝑉′ ={𝑣∈𝑉\𝑆 :𝑑(𝑤)≥ 𝑑(𝑣)∀𝑤∈𝑉\𝑆}
+// Choose node with min. Harm. Centrality.
+4 𝑥 = argmin𝑣∈𝑉′ HC(𝑣)
+5 𝑆 =𝑆∪{𝑥}
+6 return𝑆
+Algorithm 8: MinDegree_hcn
+Choose an initial seed node uniformly at random. Then, identify all
+minimum degree nodes, and sort by harmonic centrality. Finally,
+choose the highest-degree neighbor of the node with the lowest
+harmonic centrality as the new seed.
+Algorithm 8: MinDegree_hcn
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose nodes with min. degree.
+3 𝑉′ ={𝑣∈𝑉\𝑆 :𝑑(𝑤)≥ 𝑑(𝑣)∀𝑤∈𝑉\𝑆}
+// Choose node with min. Harm. Centrality.
+4 𝑥 = argmin𝑣∈𝑉′ HC(𝑣)
+// Choose highest degree neighbor.
+5 𝑦 = argmax𝑣∈𝑁(𝑥)𝑑(𝑣)
+6 𝑆 =𝑆∪{𝑦}
+7 return𝑆
+12
+--- PAGE 13 ---
+Algorithm 9: MinDegree_nd
+Choose an initial seed node uniformly at random. Then, identify
+all minimum degree nodes, and sort by neighbor degree. Choose
+the node with the highest-degree neighbor as the new seed.
+Algorithm 9: MinDegree_nd
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose nodes with min. degree.
+3 𝑉′ ={𝑣∈𝑉\𝑆 :𝑑(𝑤)≥ 𝑑(𝑣)∀𝑤∈𝑉\𝑆}
+// Choose node with highest neigh. degree.
+4 𝑥 = argmax𝑣∈𝑉′
+˝
+𝑤∈𝑁(𝑣)𝑑(𝑤)
+5 𝑆 =𝑆∪{𝑥}
+6 return𝑆
+Algorithm 10: MinDegree_ndn
+Choose an initial seed node uniformly at random. Then, identify
+all minimum degree nodes, and sort by neighbor degree. For the
+node with the highest-degree neighbor, choose the highest-degree
+neighbor itself as the new seed.
+Algorithm 10: MinDegree_ndn
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+// Initialize 𝑆 with a random node.
+1 𝑆 ={𝑠0∈𝑅𝑉}
+2 while|𝑆|≤ 𝑠 do
+// Choose nodes with min. degree.
+3 𝑉′ ={𝑣∈𝑉\𝑆 :𝑑(𝑤)≥ 𝑑(𝑣)∀𝑤∈𝑉\𝑆}
+// Choose node with highest neigh. degree.
+4 𝑥 = argmax𝑣∈𝑉′
+˝
+𝑤∈𝑁(𝑣)𝑑(𝑤)
+// Choose highest degree neighbor.
+5 𝑦 = argmax𝑣∈𝑁(𝑥)𝑑(𝑣)
+6 𝑆 =𝑆∪{𝑦}
+7 return𝑆
+Algorithm 11: Fast Ensemble (Oracle)
+Select five members of 𝐷, an ensemble of algorithms. To do so,
+perform greedy search for a set of five algorithms that attain≥ 80%
+of Myopic’s performance on the network corpus, as evaluated by
+ProbEst. Then, for each new network, select the algorithm that
+performs best as suggested by the oracle, and apply it.
+Algorithm 11: Fast Ensemble (Oracle)
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+1 Initialize𝑆 with a random node.
+2 𝑆 ={𝑠0∈𝑅𝑉}
+3 Select𝑎1,𝑎 2,𝑎 3,𝑎 4,𝑎 5 to maximize number of networks in
+the corpus for which performance of some𝑎𝑖 is≥ 80% of
+Myopic
+4 𝐷←{𝑎1,𝑎 2,𝑎 3,𝑎 4,𝑎 5}
+// Ask the oracle 𝑂 which algorithm to use
+5 𝑎best←𝑂(𝐺,𝐷)
+// Run the algorithm to get 𝑆
+6 𝑆 =𝑆∪𝑎best(𝐺,𝑠)
+7 return𝑆
+Algorithm 12: Meta-learner
+Select five members of 𝐷, an ensemble of algorithms. To do so,
+perform greedy search for a set of five algorithms that attain ≥
+80% of Myopic’s performance on the network corpus, as evaluated
+by ProbEst. Using prior network corpus data, train a model 𝑀
+that, given a new network 𝐺, selects the best algorithm out of
+the ensemble based on topological features. Apply the selected
+algorithm to𝐺.
+Algorithm 12: Meta-learner
+Input : 𝐺 =(𝑉,𝐸),𝑠 .
+Output :𝑆⊆𝑉 with|𝑆| =𝑠+ 1.
+1 Initialize𝑆 with a random node.
+2 𝑆 ={𝑠0∈𝑅𝑉}
+3 Select𝑎1,𝑎 2,𝑎 3,𝑎 4,𝑎 5 to maximize number of networks in
+the corpus for which performance of some𝑎𝑖 is≥ 80% of
+Myopic
+4 𝐷←{𝑎1,𝑎 2,𝑎 3,𝑎 4,𝑎 5}
+5 Train Random Forest Classifier𝑀 to select the best
+algorithm from𝐷 based on network topology, using data
+from the network corpus
+// Ask 𝑀 which algorithm to use
+6 𝑎best←𝑀(𝐺,𝐷)
+// Run the algorithm to get 𝑆
+7 𝑆 =𝑆∪𝑎best(𝐺,𝑠)
+8 return𝑆
+13
+--- PAGE 14 ---
+ 
+0.000
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+Biological
+ 
+Social
+ 
+Economic
+ 
+T echnological
+ 
+Transportation
+ 
+Informational
+average slope, 
+(a)
+Gonzalez
+(b)
+Figure S1: Mean performance of the intervention algorithms on each domain in the corpus, under (a) low spreadability and (b)
+high spreadability settings. Medium spreadability results are given in Figure 6.
+Biological Social Economic T echno. Transp. Info.
+z
+(a)
+z
+(b)
+Figure S2: Performance of intervention algorithms on the network corpus, relative to Myopic and sorted in ascending order by
+network size within each domain. (a): low spreadability, 12% of networks have no algorithm better than or within 80% of
+Myopic’s performance; (b): high spreadability, showing very similar results to medium spreadability (Figure 7). “Equivalent”
+defined as within one standard error of 𝛽 for Myopic; typically about 0.001.
+C SUPPLEMENTARY RESULTS
+Algorithm performance for low and high spreadability. Figure S1
+shows the mean performance𝛽 of all the algorithms applied to all
+14
+--- PAGE 15 ---
+z
+Figure S3: Best-performing algorithm on a network vs
+average degree of the network under low spreadability. Each
+network’s corresponding single most-performant algorithm
+is plotted with a circle. Total number of circles per line is
+given on the right-hand side, indicating how many times an
+algorithm was the best-performing one across the entire
+corpus.
+the networks in the corpus, grouped into the six network domains:
+biological, social, economic, technological, transportation, and in-
+formational, for low and high spreadability settings. We observe
+qualitatively similar results across spreadability settings, in which
+Myopic is often on average the best performing algorithm. How-
+ever, the relative ordering of other algorithms varies substantially
+across domains and spreadability settings.
+Figure S2 expands on these results (following the experimental
+steps in the main text), showing for the low and high spreadability
+settings the performance of each algorithm relative to the perfor-
+mance of Myopic. Notably, in the low spreadability setting, many
+more algorithms fall into the “equivalent” category, in which their
+performance is statistically indistinguisable from Myopic (𝛽 within
+one standard error). This behavior is due to the low precision of
+ProbEst in this setting. We find many fewer cases of equivalence
+in the high spreadability setting, which is qualitatively similar to
+the results in the medium setting, in which across networks, many
+alternatives perform similarly as Myopic, and in some cases outper-
+form Myopic. These results reinforce the finding that generally no
+algorithm is superior to others across networks and spreadability
+settings.
+Figures S3 and S4 tabulate the counts of how often a particular
+algorithm was the best performing (highest 𝛽) and plot them as
+a function of network mean degree⟨𝑘⟩, for low and high spread-
+ability, respectively. Here we see clearly that Myopic is by far the
+best algorithm in high spreadability (similar to results for medium,
+shown in Figure 8), but is much less so under low spreadability. We
+believe this difference is attributable to the imprecision of ProbEst
+in the low spreadability setting.
+Meta-learner. To construct the meta-learner, we trained a model
+to predict which algorithm would perform best on a given network,
+given only the network’s features and the spreadability of the infor-
+mation in the Independent Cascade model. For this task, we held out
+z
+Figure S4: Best-performing algorithm on a network vs
+average degree of the network under high spreadability.
+Each network’s corresponding single most-performant
+algorithm is plotted with a circle. Total number of circles
+per line is given on the right-hand side, indicating how
+many times an algorithm was the best-performing one
+across the entire corpus.
+domain
+number_nodesnumber_edgesavg_degreemax_degree
+degree_variance
+transitivity
+avg_shortest_path
+diameterassortativity
+feature
+0.00
+0.02
+0.04
+0.06
+0.08
+0.10
+0.12
+0.14
+0.16mean decr. in impurity
+Figure S5: Meta-learner random forest feature importance
+for predicting which of five algorithms is the best choice for
+a given network. Higher values mean a feature contributes
+more to the predicted performance value.
+Myopic and Naive Myopic , as the goal is to approximate their state-
+of-the-art performance using more scalable algorithms. Network
+features used are: the network domain, number of nodes𝑛, average
+degree⟨𝑘⟩, maximum degree𝑘max, degree variance𝜎2, clustering
+coefficient𝐶, average shortest path⟨ℓ⟩, diameterℓmax, and degree
+assortativity𝑟. We use this approach rather than a representation
+learning approach to ensure better interpretability of what aspects
+of network structure influence performance predictability.
+This multi-class classification task is challenging. Fine-tuned
+models come out with an accuracy of ≈ 0.51. Figs. S5 and S6
+show the learned feature importances and confusion matrix for
+the medium spreadability setting (similar results for low and high
+spreadability models). However, generally, incorrect algorithm choices
+by the model tend to select an alternative that is almost as good
+15
+--- PAGE 16 ---
+z
+Figure S6: Confusion matrix of the best algorithm
+prediction model for the meta-learner.
+as the true best, in terms of performance 𝛽, and so classification
+errors often do not translate into large losses in performance.
+From the classification task, we find that the domain of a net-
+work contributes the least to the prediction accuracy, followed by
+number of nodes 𝑛. Other network features are roughly equally
+important (Figure S5). This result implies that network domain does
+not contribute much marginal information beyond a network’s fea-
+tures, as has been found previously by Ikehara and Clauset [ 28].
+That is, network features encode much the same information as
+network domain.
+The accuracy of the meta-learning model under medium and
+high spreadability (Figs. 10 and S7) are similar, but with slightly
+larger performance loss and substantially larger runtime speedup
+in the case of high, than in medium.
+Unsurprisingly, the fast ensemble algorithms (which use an ora-
+cle to choose the best heuristic for a given network) in both medium
+and high spreadability settings outperform the meta-learner. How-
+ever, the gap between fast ensemble and meta-learning is only
+about 10-20%, indicating that while there is room for improvement
+in the meta-learner’s classifier, the optimal performance is not far
+off. Moreover, the fast ensemble does outperform Myopic on more
+cases than does the meta-learning, but again, the gap is not enor-
+mous. We note that timing results for some algorithms (both those
+using ProbEst and the BFS-based class of new algorithms; see Sec-
+tion 3) may be impacted by our use of an adjacency matrix (rather
+than adjacency list) representation for all networks.
+0 50 100 150 200 250 300 350
+runtime Myopic / runtime Meta-learner
+125
+100
+75
+50
+25
+0
+25
+50
+75
+100
+125
+% better vs Myopic 
+22 0
+0 150
+0
+10
+0 25
+Figure S7: Performance difference vs. speedup for the
+meta-learning algorithm relative to Myopic under high
+spreadability, with marginal histograms. Results averaged
+over 1000 meta-learner runs, and extreme outliers have been
+removed for visualization purposes only. Average
+performance loss relative to Myopic is 28.20± 25.80, with an
+average speedup factor of 133.35± 79.32, but for 22 networks
+(12.9%), the meta-learner outperforms Myopic.
+0 50 100 150 200 250 300 350
+runtime Myopic / runtime Ensemble
+125
+100
+75
+50
+25
+0
+25
+50
+75
+100
+125
+% better vs Myopic 
+481
+0 124
+0
+25
+0 25
+Figure S8: Performance difference vs. speedup for the fast
+ensemble algorithm relative to Myopic under medium
+spreadability, with marginal histograms. Extreme outliers
+have been removed for visualization purposes only. Average
+performance loss relative to Myopic is 9.34± 28.34%, with an
+average speedup factor of 70.66± 85.65, but for 48 networks
+(28.1%), the fast ensemble outperforms Myopic.
+D RESULTS ON LARGER NETWORKS
+𝑛 𝑚 𝑘 𝐶 𝑙𝑚𝑎𝑥 𝜎2
+Email (EU) 34,203 96,669 15.87 0.04 7 770
+Google+ (2013) 86,785 688,602 5.65 0.27 47 1,809
+Table S2: Statistics of Email (EU) and Google+ (2013)
+showing number of nodes 𝑛, number of edges 𝑚, average
+node degree𝑘, clustering coefficient𝐶, diameter𝑙𝑚𝑎𝑥 , and
+the variance𝜎2 of the degree distribution.
+In Table S2, we present summary statistics for the two larger
+networks used in Section 4.4. In Figure S10, we evaluate the perfor-
+mance of the five algorithms fromXhigh as well as that of Myopic.
+16
+--- PAGE 17 ---
+Figure S10: Minimum access probability vs. seed set size
+under the six algorithms inXhigh, evaluated on the two
+larger networks, Email (EU) and Google+ (2013) under high
+spreadability. Small decreases in 𝜋min are discussed
+in Appendix D. The panel on the right shows 𝛽, the slope of
+the line of best fit, for each algorithm.
+0 50 100 150 200 250 300 350
+runtime Myopic / runtime Ensemble
+125
+100
+75
+50
+25
+0
+25
+50
+75
+100
+125
+% better vs Myopic 
+471
+1 124
+0
+20
+0 25
+Figure S9: Performance difference vs. speedup for the fast
+ensemble algorithm relative to Myopic under high
+spreadability, with marginal histograms. Extreme outliers
+have been removed for visualization purposes only. Average
+performance loss relative to Myopic is 11.11± 21.8%, with an
+average speedup of 101.88± 101.27, but for 47 networks
+(27.6%), the fast ensemble algorithm outperforms Myopic.
+When evaluating the performance of these algorithms, it is impor-
+tant to note that due to the size of the networks, a large increase in
+𝜋min is not expected with any algorithm when choosing only 10
+seeds. Additionally, when looking at the minimum access probabil-
+ity as seeds are added, there are small decreases in𝜋min resulting
+from the imprecise nature of ProbEst. This is a limitation on our
+ability to evaluate these algorithms, but it is not a restriction on the
+algorithms themselves. That being noted, three out of the five al-
+gorithms (MinDegree_hc, Gonzalez and LeastCentral) produce
+𝛽 values close to, and in some cases even greater than, Myopic
+(Figure S10). Although the𝛽 values are predictably low for all al-
+gorithms, including Myopic, there is a general positive trend with
+most algorithms. From these results, we hypothesize that when
+scaled to large networks, the speedup of the algorithms is sustained,
+while seed choice quality remains comparable toMyopic for at least
+some algorithms.
+17
